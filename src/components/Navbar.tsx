@@ -50,7 +50,7 @@ const Navbar = () => {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isMobileMenuOpen
-          ? "bg-background/95 backdrop-blur-md shadow-lg border-b border-border/50"
+          ? "bg-gradient-to-b from-pitch/95 to-pitch/90 backdrop-blur-xl shadow-2xl border-b-2 border-lime/30"
           : isScrolled
           ? "md:bg-background/95 md:backdrop-blur-md md:shadow-lg md:border-b md:border-border/50 bg-transparent"
           : "bg-transparent"
@@ -97,27 +97,46 @@ const Navbar = () => {
         <div
           className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
             isMobileMenuOpen 
-              ? "max-h-96 opacity-100 bg-background/95 backdrop-blur-md shadow-lg" 
+              ? "max-h-96 opacity-100" 
               : "max-h-0 opacity-0"
           }`}
         >
-          <div className="py-4 space-y-2 border-t border-border/50">
-            {navItems.map((item, index) => (
-              <button
-                key={`${item.id}-${item.label}`}
-                onClick={() => scrollToSection(item.id)}
-                className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-300 ${
-                  activeSection === item.id
-                    ? "bg-primary/10 text-black font-semibold"
-                    : "text-black/80 hover:bg-accent hover:text-black"
-                }`}
-                style={{
-                  animationDelay: `${index * 50}ms`,
-                }}
-              >
-                {item.label}
-              </button>
-            ))}
+          <div className="relative bg-gradient-to-b from-pitch/95 via-pitch/90 to-pitch/95 backdrop-blur-xl shadow-2xl border-t-2 border-lime/30">
+            {/* Decorative gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-lime/5 via-transparent to-transparent pointer-events-none" />
+            
+            <div className="relative py-6 px-4 space-y-3">
+              {navItems.map((item, index) => (
+                <button
+                  key={`${item.id}-${item.label}`}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`group w-full text-left px-6 py-4 rounded-xl transition-all duration-300 relative overflow-hidden ${
+                    activeSection === item.id
+                      ? "bg-lime/20 text-primary-foreground font-bold shadow-lg shadow-lime/20 border-2 border-lime/40"
+                      : "bg-background/10 text-primary-foreground/90 hover:bg-background/20 hover:text-primary-foreground border-2 border-transparent hover:border-lime/20"
+                  }`}
+                  style={{
+                    animationDelay: `${index * 80}ms`,
+                  }}
+                >
+                  {/* Hover effect gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-lime/0 via-lime/5 to-lime/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  
+                  {/* Content */}
+                  <span className="relative z-10 flex items-center justify-between">
+                    <span className="text-base font-semibold">{item.label}</span>
+                    {activeSection === item.id && (
+                      <span className="w-2 h-2 bg-lime rounded-full animate-pulse" />
+                    )}
+                  </span>
+                  
+                  {/* Active indicator line */}
+                  {activeSection === item.id && (
+                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-lime to-transparent" />
+                  )}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>
