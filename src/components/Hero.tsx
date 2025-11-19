@@ -8,7 +8,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen grass-texture flex items-center justify-center overflow-hidden">
+    <section id="hero" className="relative min-h-screen grass-texture flex items-center justify-center overflow-hidden">
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-pitch/90 via-pitch/75 to-pitch/90" />
       
@@ -49,19 +49,11 @@ const Hero = () => {
           
           <Button 
             size="lg"
-            variant="outline"
             onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
-            className="border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10 font-bold text-lg px-8 py-6 rounded-full backdrop-blur-sm"
+            className="border-2 border-primary-foreground bg-transparent text-primary-foreground hover:bg-primary-foreground/20 font-bold text-lg px-8 py-6 rounded-full backdrop-blur-sm transition-all hover:scale-105"
           >
             Learn More
           </Button>
-        </div>
-      </div>
-      
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-primary-foreground/50 rounded-full flex items-start justify-center p-2">
-          <div className="w-1.5 h-1.5 bg-lime rounded-full animate-pulse" />
         </div>
       </div>
     </section>
