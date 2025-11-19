@@ -23,8 +23,8 @@ const Hero = () => {
             alt="BuildaBaller" 
             className="w-full h-auto"
             style={{
-              maskImage: 'radial-gradient(ellipse 80% 70% at center, black 35%, transparent 75%)',
-              WebkitMaskImage: 'radial-gradient(ellipse 80% 70% at center, black 35%, transparent 75%)'
+              maskImage: 'radial-gradient(ellipse 82% 72% at center, black 42%, transparent 78%)',
+              WebkitMaskImage: 'radial-gradient(ellipse 82% 72% at center, black 42%, transparent 78%)'
             }}
           />
         </div>
