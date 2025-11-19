@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="pitchGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a5f2f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2d8650;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Pitch background -->
+  <rect width="100" height="100" fill="url(#pitchGradient)" rx="8"/>
+  <!-- Football -->
+  <circle cx="50" cy="50" r="25" fill="#ffffff" stroke="#1a5f2f" stroke-width="2"/>
+  <!-- Football pattern lines -->
+  <path d="M 50 30 Q 50 50 50 70" stroke="#1a5f2f" stroke-width="2" fill="none"/>
+  <path d="M 35 50 Q 50 50 65 50" stroke="#1a5f2f" stroke-width="2" fill="none"/>
+  <path d="M 40 35 Q 50 50 60 65" stroke="#1a5f2f" stroke-width="1.5" fill="none"/>
+  <path d="M 60 35 Q 50 50 40 65" stroke="#1a5f2f" stroke-width="1.5" fill="none"/>
+</svg>
+
