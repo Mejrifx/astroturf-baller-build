@@ -1,0 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Astroturf green theme */
+    --background: 0 0% 100%;
+    --foreground: 140 100% 5%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 140 100% 5%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 140 100% 5%;
+
+    /* Primary: Deep astroturf green */
+    --primary: 140 70% 25%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary: Lighter pitch green */
+    --secondary: 140 60% 45%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Muted grass tones */
+    --muted: 140 30% 92%;
+    --muted-foreground: 140 20% 40%;
+
+    /* Accent: Electric lime for energy */
+    --accent: 85 100% 55%;
+    --accent-foreground: 140 100% 5%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 140 20% 85%;
+    --input: 140 20% 85%;
+    --ring: 140 70% 25%;
+
+    --radius: 0.75rem;
+    
+    /* Custom brand colors */
+    --pitch-green: 140 70% 25%;
+    --grass-light: 140 60% 45%;
+    --lime-bright: 85 100% 55%;
+    --dark-text: 140 100% 5%;
+    
+    /* Gradients */
+    --gradient-pitch: linear-gradient(135deg, hsl(140 70% 20%), hsl(140 60% 35%));
+    --gradient-glow: linear-gradient(180deg, hsl(85 100% 55% / 0.15), transparent);
+    
+    /* Shadows */
+    --shadow-pitch: 0 10px 40px -10px hsl(140 70% 15% / 0.4);
+    --shadow-glow: 0 0 30px hsl(85 100% 55% / 0.3);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 140 100% 5%;
+    --foreground: 0 0% 98%;
+
+    --card: 140 80% 8%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 140 80% 8%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 140 60% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 140 50% 20%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 140 40% 15%;
+    --muted-foreground: 140 20% 65%;
+
+    --accent: 85 100% 55%;
+    --accent-foreground: 140 100% 5%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 140 40% 20%;
+    --input: 140 40% 20%;
+    --ring: 140 60% 45%;
+    
+    --pitch-green: 140 60% 45%;
+    --grass-light: 140 70% 55%;
+    --lime-bright: 85 100% 60%;
+    --dark-text: 0 0% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .animate-entrance {
+    animation: entrance 1s ease-out forwards;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite;
+  }
+  
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-pitch);
+  }
+  
+  .grass-texture {
+    background-image: url('/src/assets/astroturf-texture.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+@keyframes entrance {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 20px hsl(var(--lime-bright) / 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 40px hsl(var(--lime-bright) / 0.6));
+  }
+}
