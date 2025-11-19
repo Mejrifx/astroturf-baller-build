@@ -26,7 +26,7 @@ const Coaches = () => {
   ];
 
   return (
-    <section id="coaches" className="py-24 bg-muted relative overflow-hidden">
+    <section id="coaches" className="py-24 bg-muted/60 relative overflow-hidden">
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-5 grass-texture" />
       
