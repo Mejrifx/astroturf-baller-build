@@ -1,8 +1,12 @@
-# Welcome to your Lovable project
+# BuildaBaller - Professional Football Coaching
+
+A modern, responsive website for BuildaBaller, featuring professional football coaching services for kids.
+
+**GitHub Repository**: https://github.com/Mejrifx/astroturf-baller-build
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/29730cc9-1664-4c9c-b5cc-ce984d6c5558
+**Lovable URL**: https://lovable.dev/projects/29730cc9-1664-4c9c-b5cc-ce984d6c5558
 
 ## How can I edit this code?
 
@@ -62,7 +66,34 @@ This project is built with:
 
 ## How can I deploy this project?
 
-Simply open [Lovable](https://lovable.dev/projects/29730cc9-1664-4c9c-b5cc-ce984d6c5558) and click on Share -> Publish.
+### Deploy to Netlify
+
+This project is configured for Netlify deployment with a `netlify.toml` file.
+
+**Option 1: Connect via GitHub (Recommended)**
+1. Go to [Netlify](https://www.netlify.com/) and sign in
+2. Click "Add new site" → "Import an existing project"
+3. Connect to GitHub and select this repository: `Mejrifx/astroturf-baller-build`
+4. Netlify will automatically detect the build settings from `netlify.toml`:
+   - Build command: `npm run build`
+   - Publish directory: `dist`
+5. Click "Deploy site"
+6. Your site will be live and automatically deploy on every push to the `main` branch!
+
+**Option 2: Deploy via Netlify CLI**
+```sh
+# Install Netlify CLI
+npm install -g netlify-cli
+
+# Login to Netlify
+netlify login
+
+# Deploy
+netlify deploy --prod
+```
+
+**Lovable Deployment**
+You can also deploy via [Lovable](https://lovable.dev/projects/29730cc9-1664-4c9c-b5cc-ce984d6c5558) by clicking Share -> Publish.
 
 ## Can I connect a custom domain to my Lovable project?
 
