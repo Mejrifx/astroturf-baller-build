@@ -47,13 +47,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-background/95 backdrop-blur-md shadow-lg border-b border-border/50"
-          : "bg-transparent"
-      }`}
-    >
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md shadow-lg border-b border-border/50 transition-all duration-300">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-center h-20 relative">
           {/* Desktop Navigation - Centered */}
@@ -64,8 +58,8 @@ const Navbar = () => {
                 onClick={() => scrollToSection(item.id)}
                 className={`relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300 group ${
                   activeSection === item.id
-                    ? "text-primary"
-                    : "text-foreground/80 hover:text-foreground"
+                    ? "text-black"
+                    : "text-black/80 hover:text-black"
                 }`}
               >
                 <span className="relative z-10">{item.label}</span>
@@ -80,7 +74,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden absolute right-0 p-2 rounded-lg text-foreground hover:bg-accent transition-colors duration-200"
+            className="md:hidden absolute right-0 p-2 rounded-lg text-black hover:bg-accent transition-colors duration-200"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
@@ -104,8 +98,8 @@ const Navbar = () => {
                 onClick={() => scrollToSection(item.id)}
                 className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-300 ${
                   activeSection === item.id
-                    ? "bg-primary/10 text-primary font-semibold"
-                    : "text-foreground/80 hover:bg-accent hover:text-foreground"
+                    ? "bg-primary/10 text-black font-semibold"
+                    : "text-black/80 hover:bg-accent hover:text-black"
                 }`}
                 style={{
                   animationDelay: `${index * 50}ms`,
