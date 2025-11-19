@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import logo from "@/assets/buildaballer-logo.png";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -45,6 +43,7 @@ const Navbar = () => {
     { id: "coaches", label: "Coaches" },
     { id: "services", label: "Services" },
     { id: "contact", label: "Contact" },
+    { id: "contact", label: "Book Session" },
   ];
 
   return (
@@ -56,24 +55,12 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <button
-            onClick={() => scrollToSection("hero")}
-            className="flex items-center space-x-3 group transition-transform duration-300 hover:scale-105"
-          >
-            <img
-              src={logo}
-              alt="BuildaBaller"
-              className="h-12 w-auto opacity-90 group-hover:opacity-100 transition-opacity duration-300"
-            />
-          </button>
-
-          {/* Desktop Navigation */}
+        <div className="flex items-center justify-center h-20 relative">
+          {/* Desktop Navigation - Centered */}
           <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item) => (
               <button
-                key={item.id}
+                key={`${item.id}-${item.label}`}
                 onClick={() => scrollToSection(item.id)}
                 className={`relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300 group ${
                   activeSection === item.id
@@ -88,18 +75,12 @@ const Navbar = () => {
                 <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-lime scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
               </button>
             ))}
-            <Button
-              onClick={() => scrollToSection("contact")}
-              className="ml-4 bg-lime hover:bg-lime/90 text-pitch font-semibold px-6 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-lime/50"
-            >
-              Book Session
-            </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg text-foreground hover:bg-accent transition-colors duration-200"
+            className="md:hidden absolute right-0 p-2 rounded-lg text-foreground hover:bg-accent transition-colors duration-200"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
@@ -119,7 +100,7 @@ const Navbar = () => {
           <div className="py-4 space-y-2 border-t border-border/50">
             {navItems.map((item, index) => (
               <button
-                key={item.id}
+                key={`${item.id}-${item.label}`}
                 onClick={() => scrollToSection(item.id)}
                 className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-300 ${
                   activeSection === item.id
@@ -133,12 +114,6 @@ const Navbar = () => {
                 {item.label}
               </button>
             ))}
-            <Button
-              onClick={() => scrollToSection("contact")}
-              className="w-full mt-4 bg-lime hover:bg-lime/90 text-pitch font-semibold rounded-full"
-            >
-              Book Session
-            </Button>
           </div>
         </div>
       </div>
