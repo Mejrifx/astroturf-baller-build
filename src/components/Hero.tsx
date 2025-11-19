@@ -17,11 +17,17 @@ const Hero = () => {
       
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 py-20 flex flex-col items-center text-center">
-        <img 
-          src={logo} 
-          alt="BuildaBaller" 
-          className="w-full max-w-3xl mb-12 animate-fade-in"
-        />
+        <div className="relative w-full max-w-3xl mb-12 animate-fade-in">
+          <img 
+            src={logo} 
+            alt="BuildaBaller" 
+            className="w-full h-auto"
+            style={{
+              maskImage: 'radial-gradient(ellipse 70% 60% at center, black 40%, transparent 100%)',
+              WebkitMaskImage: 'radial-gradient(ellipse 70% 60% at center, black 40%, transparent 100%)'
+            }}
+          />
+        </div>
         
         <h1 className="text-5xl md:text-7xl font-bold text-primary-foreground mb-6 animate-fade-in" style={{ animationDelay: '0.2s' }}>
           Transform Your Game
