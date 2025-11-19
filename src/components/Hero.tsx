@@ -32,7 +32,7 @@ const Hero = () => {
           </div>
           
           {/* Right Side - Text and Buttons */}
-          <div className="flex flex-col justify-center space-y-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+          <div className="flex flex-col justify-center space-y-8 animate-fade-in -mt-5 md:mt-0" style={{ animationDelay: '0.2s' }}>
             <div className="space-y-6">
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-primary-foreground leading-tight">
                 Transform Your Game
