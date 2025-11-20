@@ -22,7 +22,7 @@ const Hero = () => {
             <img 
               src="/Build a baller logo main.png" 
               alt="BuildaBaller" 
-              className="w-full max-w-4xl h-auto"
+              className="w-full max-w-xl h-auto"
             />
           </div>
           
