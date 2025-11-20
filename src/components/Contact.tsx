@@ -98,6 +98,9 @@ const Contact = () => {
 
           {/* Contact Form */}
           <Card id="contact-form" className="p-8 border-2 border-border bg-card">
+            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
+              Book a Session
+            </h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
