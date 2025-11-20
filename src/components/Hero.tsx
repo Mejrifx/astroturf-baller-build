@@ -17,24 +17,24 @@ const Hero = () => {
       
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 py-20 min-h-screen flex items-center">
-        <div className="w-full grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="w-full grid md:grid-cols-2 gap-6 md:gap-12 lg:gap-16 items-center">
           {/* Left Side - Logo */}
           <div className="relative w-full animate-fade-in flex justify-center md:justify-start">
             <img 
               src="/Build a baller logo main.png" 
               alt="BuildaBaller" 
-              className="w-full max-w-xl h-auto"
+              className="w-full max-w-xs md:max-w-xl h-auto"
             />
           </div>
           
           {/* Right Side - Text and Buttons */}
-          <div className="flex flex-col justify-center space-y-8 animate-fade-in -mt-5 md:mt-0" style={{ animationDelay: '0.2s' }}>
-            <div className="space-y-6">
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight drop-shadow-lg">
+          <div className="flex flex-col justify-center space-y-6 md:space-y-8 animate-fade-in -mt-8 md:mt-0" style={{ animationDelay: '0.2s' }}>
+            <div className="space-y-4 md:space-y-6">
+              <h1 className="text-3xl md:text-6xl lg:text-7xl font-bold text-white leading-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] md:drop-shadow-lg">
                 Transform Your Game
               </h1>
               
-              <p className="text-lg md:text-xl lg:text-2xl text-white/95 leading-relaxed max-w-2xl drop-shadow-md">
+              <p className="text-base md:text-xl lg:text-2xl text-white font-medium leading-relaxed max-w-2xl drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)] md:drop-shadow-md">
                 Professional football coaching by semi-pro players who are passionate about developing the next generation of ballers
               </p>
             </div>
