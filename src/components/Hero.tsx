@@ -22,7 +22,7 @@ const Hero = () => {
             <img 
               src="/Build a baller logo main.svg" 
               alt="BuildaBaller" 
-              className="w-full max-w-lg h-auto"
+              className="w-full max-w-4xl h-auto"
               style={{
                 maskImage: 'radial-gradient(ellipse 82% 72% at center, black 42%, transparent 78%)',
                 WebkitMaskImage: 'radial-gradient(ellipse 82% 72% at center, black 42%, transparent 78%)'
