@@ -61,7 +61,7 @@ const Navbar = () => {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isMobileMenuOpen
-          ? "bg-gradient-to-b from-pitch/95 to-pitch/90 backdrop-blur-xl shadow-2xl border-b-2 border-lime/30"
+          ? "bg-gradient-to-b from-pitch/95 to-pitch/90 backdrop-blur-xl shadow-2xl border-b-2 border-secondary/30"
           : isScrolled
           ? "md:bg-background/95 md:backdrop-blur-md md:shadow-lg md:border-b md:border-border/50 bg-transparent"
           : "bg-transparent"
@@ -137,7 +137,7 @@ const Navbar = () => {
               {/* Decorative gradient overlay - reduced opacity to not interfere with text */}
               <div className="absolute inset-0 bg-gradient-to-br from-secondary/3 via-transparent to-transparent pointer-events-none" />
               
-              <div className="relative h-full flex flex-col py-8 px-4">
+              <div className="relative h-full flex flex-col py-8 px-4 z-10">
                 {/* Logo Section */}
                 <div className="mb-8 px-2">
                   <img 
@@ -147,87 +147,27 @@ const Navbar = () => {
                   />
                 </div>
 
-<<<<<<< HEAD
-        {/* Mobile Menu */}
-        <div
-          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-            isMobileMenuOpen 
-              ? "max-h-96 opacity-100" 
-              : "max-h-0 opacity-0"
-          }`}
-        >
-          <div className="relative bg-gradient-to-b from-pitch/95 via-pitch/90 to-pitch/95 backdrop-blur-xl shadow-2xl border-t-2 border-secondary/30">
-            {/* Decorative gradient overlay - reduced opacity to not interfere with text */}
-            <div className="absolute inset-0 bg-gradient-to-br from-secondary/3 via-transparent to-transparent pointer-events-none" />
-            
-            <div className="relative py-6 px-4 space-y-3 z-10">
-              {navItems.map((item, index) => (
-                <button
-                  key={`${item.id}-${item.label}`}
-                  onClick={() => scrollToSection(item.id)}
-                  className={`group w-full text-left px-6 py-4 rounded-xl transition-all duration-300 relative overflow-hidden ${
-                    activeSection === item.id
-                      ? "bg-secondary/30 text-primary-foreground font-bold shadow-lg shadow-secondary/30 border-2 border-secondary/50"
-                      : "bg-background/30 text-primary-foreground hover:bg-background/40 hover:text-primary-foreground border-2 border-transparent hover:border-secondary/30"
-                  }`}
-                  style={{
-                    animationDelay: `${index * 80}ms`,
-                  }}
-                >
-                  {/* Hover effect gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-secondary/0 via-secondary/10 to-secondary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  
-                  {/* Content */}
-                  <span className="relative z-10 flex items-center justify-between">
-                    <span className="text-base font-semibold text-primary-foreground">{item.label}</span>
-                    {activeSection === item.id && (
-                      <span className="w-2 h-2 bg-secondary rounded-full animate-pulse" />
-                    )}
-                  </span>
-                  
-                  {/* Active indicator line */}
-                  {activeSection === item.id && (
-                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-secondary to-transparent" />
-                  )}
-                </button>
-              ))}
-
-              {/* Mobile Social Links */}
-              <div className="flex justify-center gap-4 pt-4 mt-4 border-t border-secondary/40 relative z-10">
-                {socialLinks.map((social, index) => (
-                  <a
-                    key={index}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 rounded-full bg-secondary/40 hover:bg-secondary/50 text-primary-foreground transition-all duration-300 hover:scale-110 shadow-lg"
-                    aria-label={social.label}
-                  >
-                    <social.icon className="w-5 h-5 text-primary-foreground" />
-                  </a>
-                ))}
-=======
                 {/* Navigation Items */}
-                <nav className="flex-1 space-y-2">
+                <nav className="flex-1 space-y-2 relative z-10">
                   {navItems.map((item, index) => (
                     <button
                       key={`${item.id}-${item.label}`}
                       onClick={() => scrollToSection(item.id)}
                       className={`group w-full text-left px-6 py-4 rounded-xl transition-all duration-300 relative overflow-hidden ${
                         activeSection === item.id
-                          ? "bg-secondary/20 text-primary-foreground font-bold shadow-lg shadow-secondary/20 border-2 border-secondary/40"
-                          : "bg-background/10 text-primary-foreground/90 hover:bg-background/20 hover:text-primary-foreground border-2 border-transparent hover:border-secondary/20"
+                          ? "bg-secondary/30 text-primary-foreground font-bold shadow-lg shadow-secondary/30 border-2 border-secondary/50"
+                          : "bg-background/30 text-primary-foreground hover:bg-background/40 hover:text-primary-foreground border-2 border-transparent hover:border-secondary/30"
                       }`}
                       style={{
                         animationDelay: `${index * 80}ms`,
                       }}
                     >
                       {/* Hover effect gradient */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-secondary/0 via-secondary/5 to-secondary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-secondary/0 via-secondary/10 to-secondary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       
                       {/* Content */}
                       <span className="relative z-10 flex items-center justify-between">
-                        <span className="text-base font-semibold">{item.label}</span>
+                        <span className="text-base font-semibold text-primary-foreground">{item.label}</span>
                         {activeSection === item.id && (
                           <span className="w-2 h-2 bg-secondary rounded-full animate-pulse" />
                         )}
@@ -242,21 +182,20 @@ const Navbar = () => {
                 </nav>
 
                 {/* Mobile Social Links */}
-                <div className="flex justify-center gap-4 pt-6 mt-6 border-t border-secondary/20">
+                <div className="flex justify-center gap-4 pt-6 mt-6 border-t border-secondary/40 relative z-10">
                   {socialLinks.map((social, index) => (
                     <a
                       key={index}
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-3 rounded-full bg-secondary/20 hover:bg-secondary/30 text-primary-foreground transition-all duration-300 hover:scale-110"
+                      className="p-3 rounded-full bg-secondary/40 hover:bg-secondary/50 text-primary-foreground transition-all duration-300 hover:scale-110 shadow-lg"
                       aria-label={social.label}
                     >
-                      <social.icon className="w-5 h-5" />
+                      <social.icon className="w-5 h-5 text-primary-foreground" />
                     </a>
                   ))}
                 </div>
->>>>>>> 22d9bbad6919c55385fb390eb3df5fa99416258f
               </div>
             </SheetContent>
           </Sheet>
@@ -267,4 +206,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
