@@ -41,14 +41,46 @@ const About = () => {
       <div className="absolute inset-0 grass-texture opacity-10" />
       
       <div className="container mx-auto px-4 relative z-10">
-        {/* Header */}
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 drop-shadow-lg">
-            About Build A Baller
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Where passion meets expertise. We're three semi-professional footballers dedicated to helping young players reach their full potential through expert coaching, structured training, and genuine love for the game.
-          </p>
+        {/* Header - Integrated with Live Sessions Image */}
+        <div className="relative rounded-3xl overflow-hidden shadow-2xl mb-16 animate-fade-in group">
+          {/* Mobile: Image Background */}
+          <div className="md:hidden absolute inset-0">
+            <img 
+              src="/build-a-baller-image3.jpg" 
+              alt="Live Sessions"
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/80 to-black/60" />
+          </div>
+
+          {/* Desktop: Image Background */}
+          <div className="hidden md:block absolute inset-0">
+            <img 
+              src="/build-a-baller-image3.jpg" 
+              alt="Live Sessions"
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/50" />
+          </div>
+
+          {/* Content */}
+          <div className="relative z-10 p-8 md:p-12 lg:p-16 min-h-[400px] md:min-h-[500px] flex flex-col justify-end">
+            {/* Live Sessions Badge */}
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full border border-white/20 mb-6 w-fit">
+              <span className="w-2 h-2 bg-lime rounded-full animate-pulse" />
+              <span className="text-white text-xs font-bold">Live Sessions</span>
+            </div>
+
+            {/* Title */}
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 drop-shadow-lg max-w-3xl">
+              About Build A Baller
+            </h2>
+
+            {/* Description */}
+            <p className="text-xl text-white/90 max-w-3xl leading-relaxed drop-shadow-md">
+              Where passion meets expertise. We're three semi-professional footballers dedicated to helping young players reach their full potential through expert coaching, structured training, and genuine love for the game.
+            </p>
+          </div>
         </div>
 
         {/* Main Content - Bento Grid Layout */}
@@ -70,24 +102,8 @@ const About = () => {
             ))}
           </div>
 
-          {/* Hero Image Block - Middle */}
-          <div className="lg:col-span-4 row-span-2 relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20 animate-fade-up" style={{ animationDelay: '0.2s' }}>
-            <img 
-              src="/build-a-baller-image3.jpg" 
-              alt="Training session"
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-pitch/80 via-transparent to-transparent" />
-            <div className="absolute bottom-6 left-6 right-6">
-              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full border border-white/20 mb-2">
-                <span className="w-2 h-2 bg-lime rounded-full animate-pulse" />
-                <span className="text-white text-xs font-bold">Live Sessions</span>
-              </div>
-            </div>
-          </div>
-
           {/* Mission Block - Top Right */}
-          <div className="lg:col-span-4 bg-gradient-to-br from-pitch to-pitch/90 p-8 rounded-3xl shadow-xl border border-white/10 flex flex-col justify-center animate-fade-up" style={{ animationDelay: '0.3s' }}>
+          <div className="lg:col-span-8 bg-gradient-to-br from-pitch to-pitch/90 p-8 rounded-3xl shadow-xl border border-white/10 flex flex-col justify-center animate-fade-up" style={{ animationDelay: '0.2s' }}>
             <h3 className="text-2xl font-bold text-white mb-4 drop-shadow-lg">
               Our Mission
             </h3>
