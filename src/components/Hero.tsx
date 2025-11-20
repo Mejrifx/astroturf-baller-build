@@ -30,11 +30,11 @@ const Hero = () => {
           {/* Right Side - Text and Buttons */}
           <div className="flex flex-col justify-center space-y-8 animate-fade-in -mt-5 md:mt-0" style={{ animationDelay: '0.2s' }}>
             <div className="space-y-6">
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-primary-foreground leading-tight">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight drop-shadow-lg">
                 Transform Your Game
               </h1>
               
-              <p className="text-lg md:text-xl lg:text-2xl text-primary-foreground/90 leading-relaxed max-w-2xl">
+              <p className="text-lg md:text-xl lg:text-2xl text-white/95 leading-relaxed max-w-2xl drop-shadow-md">
                 Professional football coaching by semi-pro players who are passionate about developing the next generation of ballers
               </p>
             </div>
@@ -52,7 +52,7 @@ const Hero = () => {
               <Button 
                 size="lg"
                 onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
-                className="border-2 border-primary-foreground bg-transparent text-primary-foreground hover:bg-primary-foreground/20 font-bold text-lg px-8 py-6 rounded-full backdrop-blur-sm transition-all hover:scale-105"
+                className="border-2 border-white bg-transparent text-white hover:bg-white/20 font-bold text-lg px-8 py-6 rounded-full backdrop-blur-sm transition-all hover:scale-105 shadow-lg"
               >
                 Learn More
               </Button>
