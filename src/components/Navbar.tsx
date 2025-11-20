@@ -1,5 +1,10 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Instagram, Facebook, Mail } from "lucide-react";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -115,24 +120,34 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`md:hidden p-2 rounded-lg transition-colors duration-200 ${
-              isMobileMenuOpen 
-                ? "text-primary-foreground hover:bg-primary-foreground/20" 
-                : "text-black hover:bg-accent"
-            }`}
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? (
-              <X className="h-6 w-6" />
-            ) : (
-              <Menu className="h-6 w-6" />
-            )}
-          </button>
-        </div>
+          {/* Mobile Menu Sheet */}
+          <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+            <SheetTrigger asChild>
+              <button
+                className="md:hidden p-2 rounded-lg transition-colors duration-200 text-black hover:bg-accent"
+                aria-label="Toggle menu"
+              >
+                <Menu className="h-6 w-6" />
+              </button>
+            </SheetTrigger>
+            <SheetContent 
+              side="right" 
+              className="w-[300px] p-0 border-l-2 border-secondary/30 bg-gradient-to-b from-pitch/98 via-pitch/95 to-pitch/98 backdrop-blur-xl shadow-2xl"
+            >
+              {/* Decorative gradient overlay - reduced opacity to not interfere with text */}
+              <div className="absolute inset-0 bg-gradient-to-br from-secondary/3 via-transparent to-transparent pointer-events-none" />
+              
+              <div className="relative h-full flex flex-col py-8 px-4">
+                {/* Logo Section */}
+                <div className="mb-8 px-2">
+                  <img 
+                    src="/build a baller original.png" 
+                    alt="BuildaBaller" 
+                    className="h-14 w-auto"
+                  />
+                </div>
 
+<<<<<<< HEAD
         {/* Mobile Menu */}
         <div
           className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
@@ -191,9 +206,60 @@ const Navbar = () => {
                     <social.icon className="w-5 h-5 text-primary-foreground" />
                   </a>
                 ))}
+=======
+                {/* Navigation Items */}
+                <nav className="flex-1 space-y-2">
+                  {navItems.map((item, index) => (
+                    <button
+                      key={`${item.id}-${item.label}`}
+                      onClick={() => scrollToSection(item.id)}
+                      className={`group w-full text-left px-6 py-4 rounded-xl transition-all duration-300 relative overflow-hidden ${
+                        activeSection === item.id
+                          ? "bg-secondary/20 text-primary-foreground font-bold shadow-lg shadow-secondary/20 border-2 border-secondary/40"
+                          : "bg-background/10 text-primary-foreground/90 hover:bg-background/20 hover:text-primary-foreground border-2 border-transparent hover:border-secondary/20"
+                      }`}
+                      style={{
+                        animationDelay: `${index * 80}ms`,
+                      }}
+                    >
+                      {/* Hover effect gradient */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-secondary/0 via-secondary/5 to-secondary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      
+                      {/* Content */}
+                      <span className="relative z-10 flex items-center justify-between">
+                        <span className="text-base font-semibold">{item.label}</span>
+                        {activeSection === item.id && (
+                          <span className="w-2 h-2 bg-secondary rounded-full animate-pulse" />
+                        )}
+                      </span>
+                      
+                      {/* Active indicator line */}
+                      {activeSection === item.id && (
+                        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-secondary to-transparent" />
+                      )}
+                    </button>
+                  ))}
+                </nav>
+
+                {/* Mobile Social Links */}
+                <div className="flex justify-center gap-4 pt-6 mt-6 border-t border-secondary/20">
+                  {socialLinks.map((social, index) => (
+                    <a
+                      key={index}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-3 rounded-full bg-secondary/20 hover:bg-secondary/30 text-primary-foreground transition-all duration-300 hover:scale-110"
+                      aria-label={social.label}
+                    >
+                      <social.icon className="w-5 h-5" />
+                    </a>
+                  ))}
+                </div>
+>>>>>>> 22d9bbad6919c55385fb390eb3df5fa99416258f
               </div>
-            </div>
-          </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </nav>
