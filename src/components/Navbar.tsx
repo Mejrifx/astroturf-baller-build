@@ -60,6 +60,9 @@ const Navbar = () => {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
+      // Set active section immediately when clicked
+      setActiveSection(id);
+      
       // For contact-info, scroll with offset to show the section header
       if (id === "contact-info") {
         const yOffset = -100; // Offset to account for navbar and show section header
