@@ -20,7 +20,7 @@ const Hero = () => {
           {/* Left Side - Logo */}
           <div className="relative w-full animate-fade-in flex justify-center md:justify-start">
             <img 
-              src="/Build a baller logo main.svg" 
+              src="/Build a baller logo main.png" 
               alt="BuildaBaller" 
               className="w-full max-w-4xl h-auto"
               style={{
