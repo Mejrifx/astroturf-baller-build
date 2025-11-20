@@ -132,7 +132,7 @@ const Navbar = () => {
             </SheetTrigger>
             <SheetContent 
               side="right" 
-              className="w-[300px] p-0 border-l-2 border-secondary/30 bg-gradient-to-b from-pitch/98 via-pitch/95 to-pitch/98 backdrop-blur-xl shadow-2xl"
+              className="w-[300px] p-0 border-l-2 border-secondary/30 bg-gradient-to-b from-pitch/98 via-pitch/95 to-pitch/98 backdrop-blur-xl shadow-2xl [&>button]:!right-4 [&>button]:!top-4 [&>button]:!h-8 [&>button]:!w-8 [&>button]:!text-white [&>button]:!opacity-100 [&>button]:!hover:bg-white/20 [&>button]:!hover:opacity-100 [&>button]:!z-30"
             >
               {/* No decorative overlay - it was causing visibility issues */}
               
