@@ -165,8 +165,8 @@ const VideoGallery = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white -left-12 h-12 w-12" />
-            <CarouselNext className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white -right-12 h-12 w-12" />
+            <CarouselPrevious className="bg-background/90 border-border text-foreground hover:bg-background hover:text-foreground -left-12 h-12 w-12 shadow-lg" />
+            <CarouselNext className="bg-background/90 border-border text-foreground hover:bg-background hover:text-foreground -right-12 h-12 w-12 shadow-lg" />
           </Carousel>
         </div>
       </div>
