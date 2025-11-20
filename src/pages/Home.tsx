@@ -6,6 +6,7 @@ import VideoGallery from "@/components/VideoGallery";
 import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Navbar from "@/components/Navbar";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const Home = () => {
   return (
@@ -18,6 +19,7 @@ const Home = () => {
       <Services />
       <Testimonials />
       <Contact />
+      <WhatsAppButton />
     </main>
   );
 };
