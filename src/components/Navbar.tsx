@@ -69,8 +69,8 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          {/* Logo - Left */}
-          <div className="flex-shrink-0">
+          {/* Logo - Left (Desktop only) */}
+          <div className="hidden md:flex flex-shrink-0">
             <button
               onClick={() => scrollToSection("hero")}
               className="flex items-center transition-transform hover:scale-105 duration-300"
@@ -81,6 +81,22 @@ const Navbar = () => {
                 className="h-16 w-auto"
               />
             </button>
+          </div>
+
+          {/* Social Icons - Left (Mobile only) */}
+          <div className="md:hidden flex items-center gap-2">
+            {socialLinks.map((social, index) => (
+              <a
+                key={index}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 text-foreground hover:text-primary transition-all duration-300 hover:scale-110"
+                aria-label={social.label}
+              >
+                <social.icon className="w-5 h-5" />
+              </a>
+            ))}
           </div>
 
           {/* Desktop Navigation - Center */}
@@ -102,6 +118,16 @@ const Navbar = () => {
                 <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-secondary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
               </button>
             ))}
+          </div>
+
+          {/* Book Now Button - Center (Mobile only) */}
+          <div className="md:hidden flex items-center absolute left-1/2 transform -translate-x-1/2">
+            <button
+              onClick={() => scrollToSection("contact")}
+              className="px-4 py-2 bg-secondary hover:bg-secondary/90 text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 shadow-lg"
+            >
+              Book Now
+            </button>
           </div>
 
           {/* Social Icons - Right (Desktop) */}
