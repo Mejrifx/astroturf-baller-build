@@ -69,7 +69,7 @@ const About = () => {
           {/* Hero Image Block - Middle */}
           <div className="lg:col-span-4 row-span-2 relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20 animate-fade-up" style={{ animationDelay: '0.2s' }}>
             <img 
-              src="/build-a-baller-image4.jpg" 
+              src="/build-a-baller-image1.jpg" 
               alt="Training session"
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
             />
@@ -92,17 +92,21 @@ const About = () => {
             </p>
           </div>
 
-          {/* Additional Images - Bottom Row */}
-          <div className="lg:col-span-12 grid grid-cols-3 gap-4 max-w-4xl mx-auto animate-fade-up" style={{ animationDelay: '0.4s' }}>
-             <div className="relative rounded-3xl overflow-hidden h-48 shadow-lg group">
-                <img src="/build-a-baller-image5.jpg" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Training" />
-             </div>
-             <div className="relative rounded-3xl overflow-hidden h-48 shadow-lg group">
-                <img src="/build-a-baller-image6.jpg" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Training" />
-             </div>
-             <div className="relative rounded-3xl overflow-hidden h-48 shadow-lg group">
-                <img src="/build-a-baller-image7.jpg" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Training" />
-             </div>
+        </div>
+
+        {/* Images Row - Above Features */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto mb-8 animate-fade-up" style={{ animationDelay: '0.4s' }}>
+          <div className="relative rounded-3xl overflow-hidden h-56 shadow-xl group">
+            <img src="/build-a-baller-image4.jpg" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Training" />
+          </div>
+          <div className="relative rounded-3xl overflow-hidden h-56 shadow-xl group">
+            <img src="/build-a-baller-image5.jpg" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Training" />
+          </div>
+          <div className="relative rounded-3xl overflow-hidden h-56 shadow-xl group">
+            <img src="/build-a-baller-image6.jpg" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Training" />
+          </div>
+          <div className="relative rounded-3xl overflow-hidden h-56 shadow-xl group">
+            <img src="/build-a-baller-image7.jpg" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Training" />
           </div>
         </div>
 
