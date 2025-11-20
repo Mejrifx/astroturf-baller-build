@@ -28,13 +28,13 @@ const Hero = () => {
           </div>
           
           {/* Right Side - Text and Buttons */}
-          <div className="flex flex-col justify-center space-y-6 md:space-y-8 animate-fade-in mt-8 md:mt-0" style={{ animationDelay: '0.2s' }}>
-            <div className="space-y-4 md:space-y-6">
-              <h1 className="text-3xl md:text-6xl lg:text-7xl font-bold text-white leading-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] md:drop-shadow-lg">
+          <div className="flex flex-col justify-center items-center md:items-start space-y-6 md:space-y-8 animate-fade-in mt-8 md:mt-0" style={{ animationDelay: '0.2s' }}>
+            <div className="space-y-4 md:space-y-6 text-center md:text-left">
+              <h1 className="text-3xl md:text-6xl lg:text-7xl font-bold text-white leading-tight drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)] md:drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)]">
                 Transform Your Game
               </h1>
               
-              <p className="text-base md:text-xl lg:text-2xl text-white font-medium leading-relaxed max-w-2xl drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)] md:drop-shadow-md">
+              <p className="text-base md:text-xl lg:text-2xl text-white font-medium leading-relaxed max-w-2xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] md:drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
                 Professional football coaching by semi-pro players who are passionate about developing the next generation of ballers
               </p>
             </div>
