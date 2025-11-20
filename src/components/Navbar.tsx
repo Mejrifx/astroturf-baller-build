@@ -159,9 +159,9 @@ const Navbar = () => {
             >
               {/* No decorative overlay - it was causing visibility issues */}
               
-              <div className="relative h-full flex flex-col py-8 px-4 z-20">
+              <div className="relative h-full flex flex-col py-8 px-4 z-20 items-center">
                 {/* Logo Section */}
-                <div className="mb-8 px-2 relative z-20">
+                <div className="mb-8 px-2 relative z-20 flex justify-center">
                   <img 
                     src="/build a baller original.png" 
                     alt="BuildaBaller" 
@@ -170,12 +170,12 @@ const Navbar = () => {
                 </div>
 
                 {/* Navigation Items */}
-                <nav className="flex-1 space-y-2 relative z-20">
+                <nav className="flex-1 space-y-2 relative z-20 w-full max-w-xs">
                   {navItems.map((item, index) => (
                     <button
                       key={`${item.id}-${item.label}`}
                       onClick={() => scrollToSection(item.id)}
-                      className={`group w-full text-left px-6 py-4 rounded-xl transition-all duration-300 relative overflow-hidden ${
+                      className={`group w-full text-center px-6 py-4 rounded-xl transition-all duration-300 relative overflow-hidden ${
                         activeSection === item.id
                           ? "bg-secondary/70 text-white font-bold shadow-lg shadow-secondary/50 border-2 border-secondary"
                           : "bg-white/50 text-pitch font-semibold hover:bg-white/60 border-2 border-white/30"
@@ -188,7 +188,7 @@ const Navbar = () => {
                       <div className="absolute inset-0 bg-gradient-to-r from-secondary/0 via-secondary/30 to-secondary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       
                       {/* Content */}
-                      <span className="relative z-10 flex items-center justify-between">
+                      <span className="relative z-10 flex items-center justify-center gap-2">
                         <span className="text-base font-semibold">{item.label}</span>
                         {activeSection === item.id && (
                           <span className="w-2 h-2 bg-secondary rounded-full animate-pulse" />
