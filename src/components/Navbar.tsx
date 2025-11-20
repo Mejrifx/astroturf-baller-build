@@ -24,7 +24,12 @@ const Navbar = () => {
         if (element) {
           const { offsetTop, offsetHeight } = element;
           if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section);
+            // Map contact-info and contact-form to "contact" for active state
+            if (section === "contact-info" || section === "contact-form") {
+              setActiveSection("contact");
+            } else {
+              setActiveSection(section);
+            }
             break;
           }
         }
@@ -51,11 +56,11 @@ const Navbar = () => {
   };
 
   const navItems = [
-    { id: "about", label: "About" },
-    { id: "coaches", label: "Coaches" },
-    { id: "services", label: "Services" },
-    { id: "contact-info", label: "Contact" },
-    { id: "contact-form", label: "Book Session" },
+    { id: "about", label: "About", activeId: "about" },
+    { id: "coaches", label: "Coaches", activeId: "coaches" },
+    { id: "services", label: "Services", activeId: "services" },
+    { id: "contact-info", label: "Contact", activeId: "contact" },
+    { id: "contact-form", label: "Book Session", activeId: "contact" },
   ];
 
   const socialLinks = [
@@ -176,7 +181,7 @@ const Navbar = () => {
                       key={`${item.id}-${item.label}`}
                       onClick={() => scrollToSection(item.id)}
                       className={`group w-full text-center px-6 py-4 rounded-xl transition-all duration-300 relative overflow-hidden ${
-                        activeSection === item.id
+                        activeSection === (item.activeId || item.id)
                           ? "bg-secondary/70 text-white font-bold shadow-lg shadow-secondary/50 border-2 border-secondary"
                           : "bg-white/50 text-pitch font-semibold hover:bg-white/60 border-2 border-white/30"
                       }`}
