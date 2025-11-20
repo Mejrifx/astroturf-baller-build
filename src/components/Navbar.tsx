@@ -47,8 +47,8 @@ const Navbar = () => {
     { id: "about", label: "About" },
     { id: "coaches", label: "Coaches" },
     { id: "services", label: "Services" },
-    { id: "contact", label: "Contact" },
-    { id: "contact", label: "Book Session" },
+    { id: "contact-info", label: "Contact" },
+    { id: "contact-form", label: "Book Session" },
   ];
 
   const socialLinks = [

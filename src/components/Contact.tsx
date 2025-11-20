@@ -52,7 +52,7 @@ const Contact = () => {
 
         <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Contact Info */}
-          <div className="space-y-8">
+          <div id="contact-info" className="space-y-8">
             <Card className="p-6 hover-lift border-2 border-border bg-card">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center flex-shrink-0">
@@ -97,7 +97,7 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <Card className="p-8 border-2 border-border bg-card">
+          <Card id="contact-form" className="p-8 border-2 border-border bg-card">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
