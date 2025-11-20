@@ -9,7 +9,7 @@ const Hero = () => {
   return (
     <section id="hero" className="relative min-h-screen grass-texture flex items-center justify-center overflow-hidden">
       {/* Dark overlay - fades from top and stops at navbar height (80px) */}
-      <div className="absolute inset-0 bg-gradient-to-b from-pitch/90 via-pitch/75 via-[80px] to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-b from-pitch/90 via-pitch/75 via-[10%] to-transparent" />
       
       {/* Animated gradient overlay - reduced on mobile */}
       <div className="absolute inset-0 bg-gradient-to-t from-lime/10 via-transparent to-transparent md:block hidden" />
