@@ -129,18 +129,17 @@ const VideoCard = ({ src, index }: { src: string; index: number }) => {
 
 const VideoGallery = () => {
   return (
-    <section id="gallery" className="py-24 bg-pitch relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-lime/5 via-pitch to-pitch opacity-50" />
-      <div className="absolute inset-0 grass-texture opacity-5 mix-blend-overlay" />
+    <section id="gallery" className="py-24 bg-muted/30 relative overflow-hidden">
+      {/* Background pattern */}
+      <div className="absolute inset-0 opacity-10 grass-texture" />
       
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-lg">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 drop-shadow-lg">
             See Us in Action
           </h2>
-          <p className="text-xl text-white/60 max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Watch our training sessions, drills, and player development highlights.
           </p>
         </div>
