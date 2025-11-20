@@ -131,8 +131,8 @@ const Navbar = () => {
               </button>
             </SheetTrigger>
             <SheetContent 
-              side="left" 
-              className="w-[300px] p-0 border-r-2 border-lime/30 bg-gradient-to-b from-pitch/98 via-pitch/95 to-pitch/98 backdrop-blur-xl"
+              side="right" 
+              className="w-[300px] p-0 border-l-2 border-lime/30 bg-gradient-to-b from-pitch/98 via-pitch/95 to-pitch/98 backdrop-blur-xl shadow-2xl"
             >
               {/* Decorative gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-br from-lime/5 via-transparent to-transparent pointer-events-none" />
