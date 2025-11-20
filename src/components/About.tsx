@@ -43,8 +43,8 @@ const About = () => {
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            About BuildaBaller
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 drop-shadow-lg">
+            About Build A Baller
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Where passion meets expertise. We're three semi-professional footballers dedicated to helping young players reach their full potential through expert coaching, structured training, and genuine love for the game.
@@ -88,7 +88,7 @@ const About = () => {
 
           {/* Mission Block - Top Right */}
           <div className="lg:col-span-4 bg-gradient-to-br from-pitch to-pitch/90 p-8 rounded-3xl shadow-xl border border-white/10 flex flex-col justify-center animate-fade-up" style={{ animationDelay: '0.3s' }}>
-            <h3 className="text-2xl font-bold text-white mb-4">
+            <h3 className="text-2xl font-bold text-white mb-4 drop-shadow-lg">
               Our Mission
             </h3>
             <p className="text-white/80 leading-relaxed text-balance">
@@ -143,7 +143,7 @@ const About = () => {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl font-bold text-white md:text-foreground mb-2 drop-shadow-lg md:drop-shadow-none">
+                <h3 className="text-xl font-bold text-white md:text-foreground mb-2 drop-shadow-lg md:drop-shadow-md">
                   {feature.title}
                 </h3>
 

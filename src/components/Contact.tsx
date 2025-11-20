@@ -42,7 +42,7 @@ const Contact = () => {
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 drop-shadow-lg">
             Get In Touch
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -56,7 +56,7 @@ const Contact = () => {
             <div className="bg-pitch p-8 rounded-[2.5rem] shadow-xl text-white relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-lime/20 rounded-full blur-3xl -mr-16 -mt-16" />
               <div className="relative z-10">
-                <h3 className="text-2xl font-bold mb-2">Contact Information</h3>
+                <h3 className="text-2xl font-bold mb-2 drop-shadow-md">Contact Information</h3>
                 <p className="text-white/80 mb-8">Reach out to us directly or fill out the form.</p>
                 
                 <div className="space-y-6">
@@ -96,7 +96,7 @@ const Contact = () => {
 
           {/* Contact Form */}
           <Card id="contact-form" className="p-8 lg:p-10 border-0 shadow-2xl bg-card rounded-[2.5rem] animate-fade-up">
-            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
+            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2 drop-shadow-md">
               Book a Session
             </h3>
             <p className="text-muted-foreground mb-8">Fill out the form below and we'll get back to you shortly.</p>

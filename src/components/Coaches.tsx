@@ -32,7 +32,7 @@ const Coaches = () => {
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 drop-shadow-lg">
             Meet Your Coaches
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -56,7 +56,7 @@ const Coaches = () => {
               </div>
               <div className="p-6">
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-2xl font-bold text-foreground">
+                  <h3 className="text-2xl font-bold text-foreground drop-shadow-md">
                     {coach.name}
                   </h3>
                   <span className="px-3 py-1 bg-primary text-primary-foreground text-sm font-semibold rounded-full">
