@@ -26,7 +26,7 @@ const videos = [
 const VideoCard = ({ src, index }: { src: string; index: number }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
   const togglePlay = () => {
@@ -56,6 +56,9 @@ const VideoCard = ({ src, index }: { src: string; index: number }) => {
     const video = videoRef.current;
     if (!video) return;
 
+    // Set initial muted state
+    video.muted = isMuted;
+
     const onPause = () => setIsPlaying(false);
     const onPlay = () => setIsPlaying(true);
 
@@ -66,7 +69,7 @@ const VideoCard = ({ src, index }: { src: string; index: number }) => {
       video.removeEventListener('pause', onPause);
       video.removeEventListener('play', onPlay);
     };
-  }, []);
+  }, [isMuted]);
 
   return (
     <div 
