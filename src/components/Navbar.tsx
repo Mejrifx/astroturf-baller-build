@@ -70,7 +70,7 @@ const Navbar = () => {
         isMobileMenuOpen
           ? "bg-gradient-to-b from-pitch/95 to-pitch/90 backdrop-blur-xl shadow-2xl border-b-2 border-secondary/30"
           : isScrolled
-          ? "md:bg-background/95 md:backdrop-blur-md md:shadow-lg md:border-b md:border-border/50 bg-transparent"
+          ? "bg-background/95 backdrop-blur-md shadow-lg border-b border-border/50"
           : "bg-transparent"
       }`}
     >
