@@ -12,22 +12,26 @@ const About = () => {
     {
       icon: Target,
       title: "Skill Development",
-      description: "Focused training sessions that improve technique, ball control, and game intelligence"
+      description: "Focused training sessions that improve technique, ball control, and game intelligence",
+      image: "/build-a-baller-image4.jpg"
     },
     {
       icon: Trophy,
       title: "Semi-Pro Experience",
-      description: "Learn from coaches who play at a high level and understand what it takes to succeed"
+      description: "Learn from coaches who play at a high level and understand what it takes to succeed",
+      image: "/build-a-baller-image1.jpg"
     },
     {
       icon: Users,
       title: "Fun & Structured",
-      description: "Professional coaching in an engaging environment that keeps kids motivated and improving"
+      description: "Professional coaching in an engaging environment that keeps kids motivated and improving",
+      image: "/build-a-baller-image6.jpg"
     },
     {
       icon: Award,
       title: "Proven Results",
-      description: "Our players consistently improve their game and many progress to competitive teams"
+      description: "Our players consistently improve their game and many progress to competitive teams",
+      image: "/build-a-baller-image7.jpg"
     }
   ];
 
@@ -94,8 +98,8 @@ const About = () => {
 
         </div>
 
-        {/* Images Row - Above Features */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto mb-8 animate-fade-up" style={{ animationDelay: '0.4s' }}>
+        {/* Images Row - Above Features (Desktop only) */}
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto mb-8 animate-fade-up" style={{ animationDelay: '0.4s' }}>
           <div className="relative rounded-3xl overflow-hidden h-56 shadow-xl group">
             <img src="/build-a-baller-image4.jpg" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Training" />
           </div>
@@ -115,18 +119,39 @@ const About = () => {
           {features.map((feature, index) => (
             <div 
               key={index}
-              className="group p-6 bg-card rounded-3xl shadow-lg border border-border hover:border-secondary transition-all hover:-translate-y-2"
+              className="group relative overflow-hidden rounded-3xl shadow-lg border border-border hover:border-secondary transition-all hover:-translate-y-2"
               style={{ animationDelay: `${0.5 + (index * 0.1)}s` }}
             >
-              <div className="w-14 h-14 bg-secondary/10 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-secondary/20 transition-colors">
-                <feature.icon className="w-7 h-7 text-secondary" />
+              {/* Mobile: Image Background */}
+              <div className="md:hidden absolute inset-0">
+                <img 
+                  src={feature.image} 
+                  alt={feature.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-black/50" />
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-2">
-                {feature.title}
-              </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                {feature.description}
-              </p>
+
+              {/* Desktop: Card Background */}
+              <div className="hidden md:block absolute inset-0 bg-card" />
+
+              {/* Content */}
+              <div className="relative z-10 p-6 min-h-[280px] md:min-h-0 flex flex-col justify-end md:justify-start">
+                {/* Icon */}
+                <div className="w-14 h-14 bg-secondary/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-4 group-hover:bg-secondary/30 transition-colors border border-white/10 md:bg-secondary/10 md:border-0">
+                  <feature.icon className="w-7 h-7 text-white md:text-secondary" />
+                </div>
+
+                {/* Title */}
+                <h3 className="text-xl font-bold text-white md:text-foreground mb-2 drop-shadow-lg md:drop-shadow-none">
+                  {feature.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-white/90 md:text-muted-foreground text-sm leading-relaxed drop-shadow-md md:drop-shadow-none">
+                  {feature.description}
+                </p>
+              </div>
             </div>
           ))}
         </div>
