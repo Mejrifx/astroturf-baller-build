@@ -93,7 +93,7 @@ const About = () => {
           </div>
 
           {/* Additional Images - Bottom Row */}
-          <div className="lg:col-span-8 grid grid-cols-3 gap-4 animate-fade-up" style={{ animationDelay: '0.4s' }}>
+          <div className="lg:col-span-12 grid grid-cols-3 gap-4 max-w-4xl mx-auto animate-fade-up" style={{ animationDelay: '0.4s' }}>
              <div className="relative rounded-3xl overflow-hidden h-48 shadow-lg group">
                 <img src="/build-a-baller-image5.jpg" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Training" />
              </div>
