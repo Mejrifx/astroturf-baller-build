@@ -7,6 +7,7 @@ import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Navbar from "@/components/Navbar";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import MessengerButton from "@/components/MessengerButton";
 
 const Home = () => {
   return (
@@ -20,6 +21,7 @@ const Home = () => {
       <Testimonials />
       <Contact />
       <WhatsAppButton />
+      <MessengerButton />
     </main>
   );
 };
