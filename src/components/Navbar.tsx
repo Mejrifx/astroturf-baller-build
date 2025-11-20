@@ -73,7 +73,7 @@ const Navbar = () => {
               <img 
                 src="/build a baller original.png" 
                 alt="BuildaBaller" 
-                className="h-12 w-auto"
+                className="h-16 w-auto"
               />
             </button>
           </div>
