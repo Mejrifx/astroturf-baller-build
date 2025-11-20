@@ -11,8 +11,9 @@ const Hero = () => {
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-pitch/90 via-pitch/75 to-pitch/90" />
       
-      {/* Animated gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-lime/10 via-transparent to-transparent" />
+      {/* Animated gradient overlay - reduced on mobile */}
+      <div className="absolute inset-0 bg-gradient-to-t from-lime/10 via-transparent to-transparent md:block hidden" />
+      <div className="absolute inset-0 bg-gradient-to-t from-lime/5 via-transparent via-20% to-transparent md:hidden" />
       
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 py-20 min-h-screen flex items-center">
