@@ -16,10 +16,10 @@ const Hero = () => {
       <div className="absolute inset-0 bg-gradient-to-t from-lime/5 via-transparent via-20% to-transparent md:hidden" />
       
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 pt-16 pb-20 min-h-screen flex items-start md:items-center">
+      <div className="relative z-10 container mx-auto px-4 pt-32 md:pt-16 pb-20 min-h-screen flex items-start md:items-center">
         <div className="w-full grid md:grid-cols-2 gap-6 md:gap-12 lg:gap-16 items-center">
           {/* Left Side - Logo */}
-          <div className="relative w-full animate-fade-in flex justify-center md:justify-start -translate-y-8 md:translate-y-0">
+          <div className="relative w-full animate-fade-in flex justify-center md:justify-start md:translate-y-0">
             <img 
               src="/Build a baller logo main.png" 
               alt="BuildaBaller" 
