@@ -91,9 +91,9 @@ const About = () => {
               {stats.map((stat, index) => (
                 <div 
                   key={index}
-                  className="text-center p-6 bg-card rounded-2xl shadow-lg border-2 border-border hover:border-lime transition-all hover-lift"
+                  className="text-center p-6 bg-card rounded-2xl shadow-lg border-2 border-border hover:border-secondary transition-all hover-lift"
                 >
-                  <div className="text-4xl md:text-5xl font-bold text-lime mb-2">
+                  <div className="text-4xl md:text-5xl font-bold text-secondary mb-2">
                     {stat.number}
                   </div>
                   <div className="text-sm text-muted-foreground font-medium">
@@ -103,7 +103,7 @@ const About = () => {
               ))}
             </div>
 
-            <div className="bg-gradient-to-br from-pitch to-pitch/80 p-8 rounded-2xl shadow-xl border-2 border-lime/20">
+            <div className="bg-gradient-to-br from-primary to-primary/80 p-8 rounded-2xl shadow-xl border-2 border-primary/30">
               <h3 className="text-2xl font-bold text-primary-foreground mb-4">
                 Our Mission
               </h3>
@@ -119,11 +119,11 @@ const About = () => {
           {features.map((feature, index) => (
             <div 
               key={index}
-              className="group p-6 bg-card rounded-2xl shadow-lg border-2 border-border hover:border-lime transition-all hover-lift"
+              className="group p-6 bg-card rounded-2xl shadow-lg border-2 border-border hover:border-secondary transition-all hover-lift"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="w-14 h-14 bg-gradient-to-br from-lime to-secondary rounded-xl flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-transform">
-                <feature.icon className="w-7 h-7 text-pitch" />
+              <div className="w-14 h-14 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-transform">
+                <feature.icon className="w-7 h-7 text-primary-foreground" />
               </div>
               <h3 className="text-xl font-bold text-foreground mb-3">
                 {feature.title}

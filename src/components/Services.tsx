@@ -68,13 +68,13 @@ const Services = () => {
               key={index}
               className={`group overflow-hidden hover-lift transition-all relative border-0 shadow-xl ${
                 service.popular 
-                  ? 'ring-2 ring-lime shadow-glow' 
+                  ? 'ring-2 ring-secondary shadow-glow' 
                   : ''
               }`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {service.popular && (
-                <div className="absolute top-4 right-4 z-20 bg-lime text-pitch px-4 py-1.5 rounded-full font-bold text-sm shadow-lg">
+                <div className="absolute top-4 right-4 z-20 bg-secondary text-pitch px-4 py-1.5 rounded-full font-bold text-sm shadow-lg">
                   Most Popular
                 </div>
               )}
@@ -91,7 +91,7 @@ const Services = () => {
                   <h3 className="text-2xl font-bold text-primary-foreground mb-1">
                     {service.title}
                   </h3>
-                  <p className="text-3xl font-bold text-lime">
+                  <p className="text-3xl font-bold text-secondary">
                     {service.price}
                   </p>
                 </div>
@@ -102,7 +102,7 @@ const Services = () => {
                 <ul className="space-y-3 mb-6">
                   {service.features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-3">
-                      <Check className="w-5 h-5 text-lime mt-0.5 flex-shrink-0" />
+                      <Check className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
                       <span className="text-muted-foreground">{feature}</span>
                     </li>
                   ))}
@@ -112,7 +112,7 @@ const Services = () => {
                   onClick={scrollToContact}
                   className={`w-full ${
                     service.popular
-                      ? 'bg-lime hover:bg-lime/90 text-pitch'
+                      ? 'bg-secondary hover:bg-secondary/90 text-pitch'
                       : 'bg-primary hover:bg-primary/90 text-primary-foreground'
                   } font-bold py-6 rounded-full transition-all hover:scale-105 group`}
                 >

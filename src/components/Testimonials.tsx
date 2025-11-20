@@ -68,19 +68,19 @@ const Testimonials = () => {
           {testimonials.map((testimonial, index) => (
             <Card 
               key={index}
-              className="p-6 hover-lift bg-card border-2 border-border hover:border-lime transition-all relative overflow-hidden group"
+              className="p-6 hover-lift bg-card border-2 border-border hover:border-secondary transition-all relative overflow-hidden group"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Quote icon background */}
               <div className="absolute -top-6 -right-6 opacity-5 group-hover:opacity-10 transition-opacity">
-                <Quote className="w-32 h-32 text-lime" />
+                <Quote className="w-32 h-32 text-secondary" />
               </div>
 
               <div className="relative z-10">
                 {/* Stars */}
                 <div className="flex gap-1 mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-lime text-lime" />
+                    <Star key={i} className="w-5 h-5 fill-secondary text-secondary" />
                   ))}
                 </div>
 
@@ -91,7 +91,7 @@ const Testimonials = () => {
 
                 {/* Author */}
                 <div className="flex items-center gap-3 pt-4 border-t border-border">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-lime to-secondary flex items-center justify-center text-2xl shadow-lg">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-2xl shadow-lg">
                     {testimonial.image}
                   </div>
                   <div>
@@ -110,12 +110,12 @@ const Testimonials = () => {
 
         {/* Call to action */}
         <div className="mt-16 text-center animate-fade-in" style={{ animationDelay: '0.5s' }}>
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-lime/10 to-secondary/10 px-6 py-3 rounded-full border-2 border-lime/20">
-            <Star className="w-5 h-5 text-lime fill-lime" />
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-secondary/10 to-primary/10 px-6 py-3 rounded-full border-2 border-secondary/20">
+            <Star className="w-5 h-5 text-secondary fill-secondary" />
             <span className="text-foreground font-semibold">
               Join hundreds of satisfied players and parents
             </span>
-            <Star className="w-5 h-5 text-lime fill-lime" />
+            <Star className="w-5 h-5 text-secondary fill-secondary" />
           </div>
         </div>
       </div>
