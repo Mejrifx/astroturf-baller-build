@@ -69,7 +69,7 @@ const About = () => {
           {/* Hero Image Block - Middle */}
           <div className="lg:col-span-4 row-span-2 relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20 animate-fade-up" style={{ animationDelay: '0.2s' }}>
             <img 
-              src="/build-a-baller-image1.jpg" 
+              src="/build-a-baller-image3.jpg" 
               alt="Training session"
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
             />
@@ -100,7 +100,7 @@ const About = () => {
             <img src="/build-a-baller-image4.jpg" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Training" />
           </div>
           <div className="relative rounded-3xl overflow-hidden h-56 shadow-xl group">
-            <img src="/build-a-baller-image5.jpg" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Training" />
+            <img src="/build-a-baller-image1.jpg" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Training" />
           </div>
           <div className="relative rounded-3xl overflow-hidden h-56 shadow-xl group">
             <img src="/build-a-baller-image6.jpg" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Training" />
