@@ -16,10 +16,32 @@ const Navbar = () => {
       setIsScrolled(window.scrollY > 20);
       
       // Detect active section
-      const sections = ["hero", "about", "coaches", "services", "contact", "contact-info", "contact-form"];
+      const sections = ["hero", "about", "coaches", "services", "contact-info", "contact-form", "contact"];
       const scrollPosition = window.scrollY + 100;
       
+      // Check contact-info and contact-form first (more specific)
+      const contactInfo = document.getElementById("contact-info");
+      const contactForm = document.getElementById("contact-form");
+      
+      if (contactInfo) {
+        const { offsetTop, offsetHeight } = contactInfo;
+        if (scrollPosition >= offsetTop - 50 && scrollPosition < offsetTop + offsetHeight) {
+          setActiveSection("contact-info");
+          return;
+        }
+      }
+      
+      if (contactForm) {
+        const { offsetTop, offsetHeight } = contactForm;
+        if (scrollPosition >= offsetTop - 50 && scrollPosition < offsetTop + offsetHeight) {
+          setActiveSection("contact-form");
+          return;
+        }
+      }
+      
+      // Check other sections
       for (const section of sections) {
+        if (section === "contact-info" || section === "contact-form" || section === "contact") continue;
         const element = document.getElementById(section);
         if (element) {
           const { offsetTop, offsetHeight } = element;
