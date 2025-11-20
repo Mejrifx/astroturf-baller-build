@@ -47,9 +47,9 @@ const Navbar = () => {
   ];
 
   const socialLinks = [
-    { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
-    { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
-    { icon: Mail, href: "mailto:info@buildaballer.com", label: "Email" },
+    { icon: Instagram, href: "https://www.instagram.com/buildaballer_?igsh=cGN1amJtMmQwbGJt", label: "Instagram" },
+    { icon: Facebook, href: "https://www.facebook.com/share/1At9dNjGqX/?mibextid=wwXIfr", label: "Facebook" },
+    { icon: Mail, href: "mailto:buildaballerofficial@gmail.com", label: "Email" },
   ];
 
   return (
