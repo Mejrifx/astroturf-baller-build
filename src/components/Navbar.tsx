@@ -16,7 +16,7 @@ const Navbar = () => {
       setIsScrolled(window.scrollY > 20);
       
       // Detect active section
-      const sections = ["hero", "about", "coaches", "services", "contact"];
+      const sections = ["hero", "about", "coaches", "services", "contact", "contact-info", "contact-form"];
       const scrollPosition = window.scrollY + 100;
       
       for (const section of sections) {
