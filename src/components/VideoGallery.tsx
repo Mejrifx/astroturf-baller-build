@@ -1,6 +1,13 @@
 import { useState, useRef, useEffect } from 'react';
 import { Play, Pause, Volume2, VolumeX } from 'lucide-react';
 import { cn } from "@/lib/utils";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const videos = [
   "/BAB-Vid1.mp4",
@@ -64,11 +71,9 @@ const VideoCard = ({ src, index }: { src: string; index: number }) => {
   return (
     <div 
       className={cn(
-        "relative group rounded-2xl overflow-hidden bg-black aspect-[9/16] md:aspect-[3/4] shadow-xl transition-all duration-300",
-        "hover:scale-[1.02] hover:shadow-2xl border border-white/10",
-        "animate-fade-up"
+        "relative group rounded-2xl overflow-hidden bg-black aspect-[9/16] shadow-xl transition-all duration-300 h-full",
+        "hover:shadow-2xl border border-white/10",
       )}
-      style={{ animationDelay: `${index * 0.1}s` }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={togglePlay}
@@ -140,11 +145,27 @@ const VideoGallery = () => {
           </p>
         </div>
 
-        {/* Video Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {videos.map((src, index) => (
-            <VideoCard key={index} src={src} index={index} />
-          ))}
+        {/* Video Carousel */}
+        <div className="w-full max-w-7xl mx-auto px-12">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-4">
+              {videos.map((src, index) => (
+                <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+                  <div className="p-1">
+                    <VideoCard src={src} index={index} />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white -left-12 h-12 w-12" />
+            <CarouselNext className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white -right-12 h-12 w-12" />
+          </Carousel>
         </div>
       </div>
     </section>
