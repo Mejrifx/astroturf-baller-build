@@ -154,19 +154,19 @@ const Navbar = () => {
                       onClick={() => scrollToSection(item.id)}
                       className={`group w-full text-left px-6 py-4 rounded-xl transition-all duration-300 relative overflow-hidden ${
                         activeSection === item.id
-                          ? "bg-secondary/50 text-white font-bold shadow-lg shadow-secondary/50 border-2 border-secondary"
-                          : "bg-white/10 text-white hover:bg-white/20 border-2 border-transparent hover:border-secondary/50"
+                          ? "bg-secondary/60 text-white font-bold shadow-lg shadow-secondary/50 border-2 border-secondary"
+                          : "bg-white/20 text-white hover:bg-white/30 border-2 border-white/20 hover:border-secondary/50"
                       }`}
                       style={{
                         animationDelay: `${index * 80}ms`,
                       }}
                     >
                       {/* Hover effect gradient */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-secondary/0 via-secondary/20 to-secondary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-secondary/0 via-secondary/30 to-secondary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       
                       {/* Content */}
                       <span className="relative z-10 flex items-center justify-between">
-                        <span className="text-base font-semibold text-white">{item.label}</span>
+                        <span className="text-base font-semibold text-white drop-shadow-sm">{item.label}</span>
                         {activeSection === item.id && (
                           <span className="w-2 h-2 bg-secondary rounded-full animate-pulse" />
                         )}
