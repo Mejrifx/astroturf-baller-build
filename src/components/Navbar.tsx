@@ -141,30 +141,30 @@ const Navbar = () => {
               : "max-h-0 opacity-0"
           }`}
         >
-          <div className="relative bg-gradient-to-b from-pitch/95 via-pitch/90 to-pitch/95 backdrop-blur-xl shadow-2xl border-t-2 border-lime/30">
-            {/* Decorative gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br from-lime/5 via-transparent to-transparent pointer-events-none" />
+          <div className="relative bg-gradient-to-b from-pitch/95 via-pitch/90 to-pitch/95 backdrop-blur-xl shadow-2xl border-t-2 border-secondary/30">
+            {/* Decorative gradient overlay - reduced opacity to not interfere with text */}
+            <div className="absolute inset-0 bg-gradient-to-br from-secondary/3 via-transparent to-transparent pointer-events-none" />
             
-            <div className="relative py-6 px-4 space-y-3">
+            <div className="relative py-6 px-4 space-y-3 z-10">
               {navItems.map((item, index) => (
                 <button
                   key={`${item.id}-${item.label}`}
                   onClick={() => scrollToSection(item.id)}
                   className={`group w-full text-left px-6 py-4 rounded-xl transition-all duration-300 relative overflow-hidden ${
                     activeSection === item.id
-                      ? "bg-secondary/20 text-primary-foreground font-bold shadow-lg shadow-secondary/20 border-2 border-secondary/40"
-                      : "bg-background/10 text-primary-foreground/90 hover:bg-background/20 hover:text-primary-foreground border-2 border-transparent hover:border-secondary/20"
+                      ? "bg-secondary/30 text-primary-foreground font-bold shadow-lg shadow-secondary/30 border-2 border-secondary/50"
+                      : "bg-background/30 text-primary-foreground hover:bg-background/40 hover:text-primary-foreground border-2 border-transparent hover:border-secondary/30"
                   }`}
                   style={{
                     animationDelay: `${index * 80}ms`,
                   }}
                 >
                   {/* Hover effect gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-secondary/0 via-secondary/5 to-secondary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-secondary/0 via-secondary/10 to-secondary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   
                   {/* Content */}
                   <span className="relative z-10 flex items-center justify-between">
-                    <span className="text-base font-semibold">{item.label}</span>
+                    <span className="text-base font-semibold text-primary-foreground">{item.label}</span>
                     {activeSection === item.id && (
                       <span className="w-2 h-2 bg-secondary rounded-full animate-pulse" />
                     )}
@@ -178,17 +178,17 @@ const Navbar = () => {
               ))}
 
               {/* Mobile Social Links */}
-              <div className="flex justify-center gap-4 pt-4 mt-4 border-t border-secondary/20">
+              <div className="flex justify-center gap-4 pt-4 mt-4 border-t border-secondary/40 relative z-10">
                 {socialLinks.map((social, index) => (
                   <a
                     key={index}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 rounded-full bg-secondary/20 hover:bg-secondary/30 text-primary-foreground transition-all duration-300 hover:scale-110"
+                    className="p-3 rounded-full bg-secondary/40 hover:bg-secondary/50 text-primary-foreground transition-all duration-300 hover:scale-110 shadow-lg"
                     aria-label={social.label}
                   >
-                    <social.icon className="w-5 h-5" />
+                    <social.icon className="w-5 h-5 text-primary-foreground" />
                   </a>
                 ))}
               </div>
