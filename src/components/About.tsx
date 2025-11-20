@@ -47,70 +47,62 @@ const About = () => {
           </p>
         </div>
 
-        {/* Main Content - Two Column Layout */}
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-20 max-w-7xl mx-auto">
-          {/* Left - Images Grid */}
-          <div className="grid grid-cols-2 gap-4 animate-fade-in">
-            <div className="space-y-4">
-              <div className="relative overflow-hidden rounded-2xl shadow-xl hover-lift">
-                <img 
-                  src="/build-a-baller-image4.jpg" 
-                  alt="Training session"
-                  className="w-full h-64 object-cover"
-                />
+        {/* Main Content - Bento Grid Layout */}
+        <div className="grid lg:grid-cols-12 gap-8 mb-20 max-w-7xl mx-auto">
+          {/* Stats Block - Top Left */}
+          <div className="lg:col-span-4 grid grid-cols-2 gap-4 animate-fade-up" style={{ animationDelay: '0.1s' }}>
+            {stats.map((stat, index) => (
+              <div 
+                key={index}
+                className="bg-card/80 backdrop-blur-sm p-6 rounded-3xl shadow-lg border border-white/20 hover:border-secondary/50 transition-all hover:-translate-y-1 group"
+              >
+                <div className="text-3xl md:text-4xl font-bold text-secondary mb-1 group-hover:scale-110 transition-transform origin-left">
+                  {stat.number}
+                </div>
+                <div className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
+                  {stat.label}
+                </div>
               </div>
-              <div className="relative overflow-hidden rounded-2xl shadow-xl hover-lift">
-                <img 
-                  src="/build-a-baller-image5.jpg" 
-                  alt="Training session"
-                  className="w-full h-48 object-cover"
-                />
-              </div>
-            </div>
-            <div className="space-y-4 pt-8">
-              <div className="relative overflow-hidden rounded-2xl shadow-xl hover-lift">
-                <img 
-                  src="/build-a-baller-image6.jpg" 
-                  alt="Training session"
-                  className="w-full h-48 object-cover"
-                />
-              </div>
-              <div className="relative overflow-hidden rounded-2xl shadow-xl hover-lift">
-                <img 
-                  src="/build-a-baller-image7.jpg" 
-                  alt="Training session"
-                  className="w-full h-64 object-cover"
-                />
+            ))}
+          </div>
+
+          {/* Hero Image Block - Middle */}
+          <div className="lg:col-span-4 row-span-2 relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20 animate-fade-up" style={{ animationDelay: '0.2s' }}>
+            <img 
+              src="/build-a-baller-image4.jpg" 
+              alt="Training session"
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-pitch/80 via-transparent to-transparent" />
+            <div className="absolute bottom-6 left-6 right-6">
+              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full border border-white/20 mb-2">
+                <span className="w-2 h-2 bg-lime rounded-full animate-pulse" />
+                <span className="text-white text-xs font-bold">Live Sessions</span>
               </div>
             </div>
           </div>
 
-          {/* Right - Stats */}
-          <div className="space-y-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            <div className="grid grid-cols-2 gap-6">
-              {stats.map((stat, index) => (
-                <div 
-                  key={index}
-                  className="text-center p-6 bg-card rounded-2xl shadow-lg border-2 border-border hover:border-secondary transition-all hover-lift"
-                >
-                  <div className="text-4xl md:text-5xl font-bold text-secondary mb-2">
-                    {stat.number}
-                  </div>
-                  <div className="text-sm text-muted-foreground font-medium">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-            </div>
+          {/* Mission Block - Top Right */}
+          <div className="lg:col-span-4 bg-gradient-to-br from-pitch to-pitch/90 p-8 rounded-3xl shadow-xl border border-white/10 flex flex-col justify-center animate-fade-up" style={{ animationDelay: '0.3s' }}>
+            <h3 className="text-2xl font-bold text-white mb-4">
+              Our Mission
+            </h3>
+            <p className="text-white/80 leading-relaxed text-balance">
+              To develop the next generation of footballers by providing high-quality coaching that combines technical excellence, tactical understanding, and the pure joy of playing the beautiful game.
+            </p>
+          </div>
 
-            <div className="bg-gradient-to-br from-primary to-primary/80 p-8 rounded-2xl shadow-xl border-2 border-primary/30">
-              <h3 className="text-2xl font-bold text-primary-foreground mb-4">
-                Our Mission
-              </h3>
-              <p className="text-primary-foreground/90 leading-relaxed">
-                To develop the next generation of footballers by providing high-quality coaching that combines technical excellence, tactical understanding, and the pure joy of playing the beautiful game.
-              </p>
-            </div>
+          {/* Additional Images - Bottom Row */}
+          <div className="lg:col-span-8 grid grid-cols-3 gap-4 animate-fade-up" style={{ animationDelay: '0.4s' }}>
+             <div className="relative rounded-3xl overflow-hidden h-48 shadow-lg group">
+                <img src="/build-a-baller-image5.jpg" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Training" />
+             </div>
+             <div className="relative rounded-3xl overflow-hidden h-48 shadow-lg group">
+                <img src="/build-a-baller-image6.jpg" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Training" />
+             </div>
+             <div className="relative rounded-3xl overflow-hidden h-48 shadow-lg group">
+                <img src="/build-a-baller-image7.jpg" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Training" />
+             </div>
           </div>
         </div>
 
@@ -119,13 +111,13 @@ const About = () => {
           {features.map((feature, index) => (
             <div 
               key={index}
-              className="group p-6 bg-card rounded-2xl shadow-lg border-2 border-border hover:border-secondary transition-all hover-lift"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="group p-6 bg-card rounded-3xl shadow-lg border border-border hover:border-secondary transition-all hover:-translate-y-2"
+              style={{ animationDelay: `${0.5 + (index * 0.1)}s` }}
             >
-              <div className="w-14 h-14 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-transform">
-                <feature.icon className="w-7 h-7 text-primary-foreground" />
+              <div className="w-14 h-14 bg-secondary/10 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-secondary/20 transition-colors">
+                <feature.icon className="w-7 h-7 text-secondary" />
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-3">
+              <h3 className="text-xl font-bold text-foreground mb-2">
                 {feature.title}
               </h3>
               <p className="text-muted-foreground text-sm leading-relaxed">

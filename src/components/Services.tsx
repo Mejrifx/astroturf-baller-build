@@ -66,55 +66,59 @@ const Services = () => {
           {services.map((service, index) => (
             <Card 
               key={index}
-              className={`group overflow-hidden hover-lift transition-all relative border-0 shadow-xl ${
+              className={`group overflow-hidden hover-lift transition-all relative border-0 shadow-2xl rounded-[2rem] ${
                 service.popular 
-                  ? 'ring-2 ring-secondary shadow-glow' 
-                  : ''
+                  ? 'ring-2 ring-secondary shadow-glow bg-secondary/5' 
+                  : 'bg-card'
               }`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {service.popular && (
-                <div className="absolute top-4 right-4 z-20 bg-secondary text-pitch px-4 py-1.5 rounded-full font-bold text-sm shadow-lg">
+                <div className="absolute top-4 right-4 z-20 bg-secondary text-white px-4 py-1.5 rounded-full font-bold text-xs uppercase tracking-wider shadow-lg">
                   Most Popular
                 </div>
               )}
               
               {/* Image with overlay */}
-              <div className="relative h-64 overflow-hidden">
+              <div className="relative h-72 overflow-hidden">
                 <img 
                   src={service.image} 
                   alt={service.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-pitch via-pitch/60 to-transparent" />
-                <div className="absolute bottom-4 left-6 right-6">
-                  <h3 className="text-2xl font-bold text-primary-foreground mb-1">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6 transform transition-transform duration-300 group-hover:-translate-y-2">
+                  <h3 className="text-2xl font-bold text-white mb-2 drop-shadow-md">
                     {service.title}
                   </h3>
-                  <p className="text-3xl font-bold text-secondary">
-                    {service.price}
-                  </p>
+                  <div className="inline-block px-3 py-1 bg-secondary/90 rounded-lg backdrop-blur-sm">
+                    <p className="text-lg font-bold text-white">
+                      {service.price}
+                    </p>
+                  </div>
                 </div>
               </div>
 
               {/* Content */}
-              <div className="p-6 bg-card">
-                <ul className="space-y-3 mb-6">
+              <div className="p-8 pt-6">
+                <ul className="space-y-4 mb-8">
                   {service.features.map((feature, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <Check className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
-                      <span className="text-muted-foreground">{feature}</span>
+                    <li key={i} className="flex items-center gap-3 group/item">
+                      <div className="w-6 h-6 rounded-full bg-secondary/10 flex items-center justify-center flex-shrink-0 group-hover/item:bg-secondary/20 transition-colors">
+                        <Check className="w-3.5 h-3.5 text-secondary" />
+                      </div>
+                      <span className="text-muted-foreground font-medium">{feature}</span>
                     </li>
                   ))}
                 </ul>
 
                 <Button 
                   onClick={scrollToContact}
-                  className={`w-full ${
+                  className={`w-full h-14 text-lg ${
                     service.popular
-                      ? 'bg-secondary hover:bg-secondary/90 text-pitch'
-                      : 'bg-primary hover:bg-primary/90 text-primary-foreground'
-                  } font-bold py-6 rounded-full transition-all hover:scale-105 group`}
+                      ? 'bg-secondary hover:bg-secondary/90 text-white shadow-lg shadow-secondary/20'
+                      : 'bg-foreground hover:bg-foreground/90 text-white'
+                  } font-bold rounded-2xl transition-all hover:scale-[1.02] active:scale-[0.98] group`}
                 >
                   Book Now
                   <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />

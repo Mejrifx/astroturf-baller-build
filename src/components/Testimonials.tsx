@@ -78,52 +78,52 @@ const Testimonials = () => {
           </div>
         </div>
 
-        {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        {/* Testimonials Grid - Modern Masonry Style */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
           {testimonials.map((testimonial, index) => (
             <Card 
               key={index}
-              className="p-6 hover-lift bg-card border-2 border-border hover:border-secondary transition-all relative overflow-hidden group"
+              className="p-8 hover-lift bg-card/50 backdrop-blur-sm border border-border/50 hover:border-secondary/50 transition-all relative overflow-hidden group rounded-3xl shadow-sm hover:shadow-xl"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              {/* Quote icon background */}
-              <div className="absolute -top-6 -right-6 opacity-5 group-hover:opacity-10 transition-opacity">
-                <Quote className="w-32 h-32 text-secondary" />
+              {/* Subtle background pattern */}
+              <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                <Quote className="w-16 h-16 text-secondary transform rotate-180" />
               </div>
 
-              <div className="relative z-10">
-                {/* Stars */}
-                <div className="flex gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-secondary text-secondary" />
-                  ))}
-                </div>
-
-                {/* Testimonial text */}
-                <p className="text-muted-foreground leading-relaxed mb-6 italic">
-                  "{testimonial.text}"
-                </p>
-
-                {/* Author */}
-                <div className="flex items-center gap-3 pt-4 border-t border-border">
-                  <div className={`w-12 h-12 rounded-full flex items-center justify-center shadow-lg ${
+              <div className="relative z-10 flex flex-col h-full">
+                {/* Header */}
+                <div className="flex items-center gap-4 mb-6">
+                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shadow-inner ${
                     testimonial.gender === 'male' 
-                      ? 'bg-gradient-to-br from-blue-500 to-blue-600' 
-                      : 'bg-gradient-to-br from-purple-500 to-pink-500'
+                      ? 'bg-gradient-to-br from-blue-500/10 to-blue-600/10 text-blue-600' 
+                      : 'bg-gradient-to-br from-purple-500/10 to-pink-500/10 text-purple-600'
                   }`}>
-                    <span className="text-white font-bold text-sm">
+                    <span className="font-bold text-lg">
                       {testimonial.initials}
                     </span>
                   </div>
                   <div>
-                    <div className="font-bold text-foreground">
+                    <div className="font-bold text-lg text-foreground leading-tight">
                       {testimonial.name}
                     </div>
-                    <div className="text-sm text-muted-foreground">
+                    <div className="text-sm text-muted-foreground font-medium">
                       {testimonial.age}
                     </div>
                   </div>
                 </div>
+
+                {/* Rating */}
+                <div className="flex gap-1 mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-secondary text-secondary" />
+                  ))}
+                </div>
+
+                {/* Testimonial text */}
+                <p className="text-muted-foreground leading-relaxed flex-grow">
+                  "{testimonial.text}"
+                </p>
               </div>
             </Card>
           ))}

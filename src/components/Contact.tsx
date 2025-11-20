@@ -50,77 +50,87 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
           {/* Contact Info */}
-          <div id="contact-info" className="space-y-8">
-            <Card className="p-6 hover-lift border-2 border-border bg-card">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Mail className="w-6 h-6 text-primary-foreground" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-lg text-foreground mb-1">Email Us</h3>
-                  <a href="mailto:info@buildaballer.com" className="text-muted-foreground hover:text-primary transition-colors">
-                    info@buildaballer.com
+          <div id="contact-info" className="space-y-6 animate-slide-in-right">
+            <div className="bg-pitch p-8 rounded-[2.5rem] shadow-xl text-white relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-lime/20 rounded-full blur-3xl -mr-16 -mt-16" />
+              <div className="relative z-10">
+                <h3 className="text-2xl font-bold mb-2">Contact Information</h3>
+                <p className="text-white/80 mb-8">Reach out to us directly or fill out the form.</p>
+                
+                <div className="space-y-6">
+                  <a href="mailto:info@buildaballer.com" className="flex items-center gap-4 group p-4 rounded-2xl bg-white/5 hover:bg-white/10 transition-colors">
+                    <div className="w-12 h-12 bg-lime rounded-xl flex items-center justify-center text-pitch">
+                      <Mail className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-white/60 font-medium mb-0.5">Email Us</p>
+                      <p className="font-semibold group-hover:text-lime transition-colors">info@buildaballer.com</p>
+                    </div>
                   </a>
-                </div>
-              </div>
-            </Card>
 
-            <Card className="p-6 hover-lift border-2 border-border bg-card">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Phone className="w-6 h-6 text-primary-foreground" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-lg text-foreground mb-1">Call Us</h3>
-                  <a href="tel:+447123456789" className="text-muted-foreground hover:text-primary transition-colors">
-                    +44 7123 456 789
+                  <a href="tel:+447123456789" className="flex items-center gap-4 group p-4 rounded-2xl bg-white/5 hover:bg-white/10 transition-colors">
+                    <div className="w-12 h-12 bg-lime rounded-xl flex items-center justify-center text-pitch">
+                      <Phone className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-white/60 font-medium mb-0.5">Call Us</p>
+                      <p className="font-semibold group-hover:text-lime transition-colors">+44 7123 456 789</p>
+                    </div>
                   </a>
-                </div>
-              </div>
-            </Card>
 
-            <Card className="p-6 hover-lift border-2 border-border bg-card">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center flex-shrink-0">
-                  <MapPin className="w-6 h-6 text-primary-foreground" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-lg text-foreground mb-1">Location</h3>
-                  <p className="text-muted-foreground">
-                    Various locations across the area
-                  </p>
+                  <div className="flex items-center gap-4 p-4 rounded-2xl bg-white/5">
+                    <div className="w-12 h-12 bg-lime rounded-xl flex items-center justify-center text-pitch">
+                      <MapPin className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-white/60 font-medium mb-0.5">Location</p>
+                      <p className="font-semibold">Various locations across the area</p>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </Card>
+            </div>
           </div>
 
           {/* Contact Form */}
-          <Card id="contact-form" className="p-8 border-2 border-border bg-card">
-            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
+          <Card id="contact-form" className="p-8 lg:p-10 border-0 shadow-2xl bg-card rounded-[2.5rem] animate-fade-up">
+            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
               Book a Session
             </h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                  Your Name
-                </label>
-                <Input
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="bg-background border-2 border-input focus:border-primary"
-                  placeholder="John Smith"
-                />
+            <p className="text-muted-foreground mb-8">Fill out the form below and we'll get back to you shortly.</p>
+            
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div className="grid sm:grid-cols-2 gap-5">
+                <div className="space-y-2">
+                  <label htmlFor="name" className="text-sm font-medium text-foreground ml-1">Name</label>
+                  <Input
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    className="h-12 rounded-xl bg-muted/30 border-transparent focus:border-secondary focus:bg-background transition-all"
+                    placeholder="John Smith"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label htmlFor="phone" className="text-sm font-medium text-foreground ml-1">Phone</label>
+                  <Input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className="h-12 rounded-xl bg-muted/30 border-transparent focus:border-secondary focus:bg-background transition-all"
+                    placeholder="+44 7123 456789"
+                  />
+                </div>
               </div>
 
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                  Email Address
-                </label>
+              <div className="space-y-2">
+                <label htmlFor="email" className="text-sm font-medium text-foreground ml-1">Email</label>
                 <Input
                   id="email"
                   name="email"
@@ -128,45 +138,28 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="bg-background border-2 border-input focus:border-primary"
+                  className="h-12 rounded-xl bg-muted/30 border-transparent focus:border-secondary focus:bg-background transition-all"
                   placeholder="john@example.com"
                 />
               </div>
 
-              <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
-                  Phone Number
-                </label>
-                <Input
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className="bg-background border-2 border-input focus:border-primary"
-                  placeholder="+44 7123 456789"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                  Message
-                </label>
+              <div className="space-y-2">
+                <label htmlFor="message" className="text-sm font-medium text-foreground ml-1">Message</label>
                 <Textarea
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  rows={5}
-                  className="bg-background border-2 border-input focus:border-primary resize-none"
-                  placeholder="Tell us about your football goals and what you're looking for..."
+                  rows={4}
+                  className="rounded-xl bg-muted/30 border-transparent focus:border-secondary focus:bg-background transition-all resize-none p-4"
+                  placeholder="Tell us about your football goals..."
                 />
               </div>
 
               <Button 
                 type="submit"
-                className="w-full bg-lime hover:bg-lime/90 text-pitch font-bold py-6 rounded-full transition-all hover:scale-105 shadow-glow"
+                className="w-full h-14 text-lg bg-secondary hover:bg-secondary/90 text-white font-bold rounded-xl transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-secondary/25 mt-2"
               >
                 Send Message
                 <Send className="ml-2 h-5 w-5" />
