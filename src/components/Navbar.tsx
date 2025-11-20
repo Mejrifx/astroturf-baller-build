@@ -120,16 +120,6 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Book Now Button - Center (Mobile only) */}
-          <div className="md:hidden flex items-center absolute left-1/2 transform -translate-x-1/2">
-            <button
-              onClick={() => scrollToSection("contact")}
-              className="px-4 py-2 bg-secondary hover:bg-secondary/90 text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 shadow-lg"
-            >
-              Book Now
-            </button>
-          </div>
-
           {/* Social Icons - Right (Desktop) */}
           <div className="hidden md:flex items-center gap-3">
             {socialLinks.map((social, index) => (
