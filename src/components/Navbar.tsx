@@ -134,12 +134,11 @@ const Navbar = () => {
               side="right" 
               className="w-[300px] p-0 border-l-2 border-secondary/30 bg-gradient-to-b from-pitch/98 via-pitch/95 to-pitch/98 backdrop-blur-xl shadow-2xl"
             >
-              {/* Decorative gradient overlay - reduced opacity to not interfere with text */}
-              <div className="absolute inset-0 bg-gradient-to-br from-secondary/3 via-transparent to-transparent pointer-events-none" />
+              {/* No decorative overlay - it was causing visibility issues */}
               
-              <div className="relative h-full flex flex-col py-8 px-4 z-10">
+              <div className="relative h-full flex flex-col py-8 px-4 z-20">
                 {/* Logo Section */}
-                <div className="mb-8 px-2">
+                <div className="mb-8 px-2 relative z-20">
                   <img 
                     src="/build a baller original.png" 
                     alt="BuildaBaller" 
@@ -148,26 +147,26 @@ const Navbar = () => {
                 </div>
 
                 {/* Navigation Items */}
-                <nav className="flex-1 space-y-2 relative z-10">
+                <nav className="flex-1 space-y-2 relative z-20">
                   {navItems.map((item, index) => (
                     <button
                       key={`${item.id}-${item.label}`}
                       onClick={() => scrollToSection(item.id)}
                       className={`group w-full text-left px-6 py-4 rounded-xl transition-all duration-300 relative overflow-hidden ${
                         activeSection === item.id
-                          ? "bg-secondary/30 text-primary-foreground font-bold shadow-lg shadow-secondary/30 border-2 border-secondary/50"
-                          : "bg-background/30 text-primary-foreground hover:bg-background/40 hover:text-primary-foreground border-2 border-transparent hover:border-secondary/30"
+                          ? "bg-secondary/50 text-white font-bold shadow-lg shadow-secondary/50 border-2 border-secondary"
+                          : "bg-white/10 text-white hover:bg-white/20 border-2 border-transparent hover:border-secondary/50"
                       }`}
                       style={{
                         animationDelay: `${index * 80}ms`,
                       }}
                     >
                       {/* Hover effect gradient */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-secondary/0 via-secondary/10 to-secondary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-secondary/0 via-secondary/20 to-secondary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       
                       {/* Content */}
                       <span className="relative z-10 flex items-center justify-between">
-                        <span className="text-base font-semibold text-primary-foreground">{item.label}</span>
+                        <span className="text-base font-semibold text-white">{item.label}</span>
                         {activeSection === item.id && (
                           <span className="w-2 h-2 bg-secondary rounded-full animate-pulse" />
                         )}
@@ -182,17 +181,17 @@ const Navbar = () => {
                 </nav>
 
                 {/* Mobile Social Links */}
-                <div className="flex justify-center gap-4 pt-6 mt-6 border-t border-secondary/40 relative z-10">
+                <div className="flex justify-center gap-4 pt-6 mt-6 border-t border-white/20 relative z-20">
                   {socialLinks.map((social, index) => (
                     <a
                       key={index}
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-3 rounded-full bg-secondary/40 hover:bg-secondary/50 text-primary-foreground transition-all duration-300 hover:scale-110 shadow-lg"
+                      className="p-3 rounded-full bg-secondary/60 hover:bg-secondary/80 text-white transition-all duration-300 hover:scale-110 shadow-lg border-2 border-secondary/50"
                       aria-label={social.label}
                     >
-                      <social.icon className="w-5 h-5 text-primary-foreground" />
+                      <social.icon className="w-5 h-5 text-white" />
                     </a>
                   ))}
                 </div>
