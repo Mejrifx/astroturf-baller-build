@@ -1,6 +1,5 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import logo from "@/assets/buildaballer-logo.png";
 
 const Hero = () => {
   const scrollToContact = () => {
@@ -21,7 +20,7 @@ const Hero = () => {
           {/* Left Side - Logo */}
           <div className="relative w-full animate-fade-in flex justify-center md:justify-start">
             <img 
-              src={logo} 
+              src="/Build a baller logo main.svg" 
               alt="BuildaBaller" 
               className="w-full max-w-lg h-auto"
               style={{
