@@ -1,10 +1,92 @@
+import { useEffect, useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { gsap } from "gsap";
 
 const Hero = () => {
+  const logoRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+  const buttonsRef = useRef<HTMLDivElement>(null);
+
   const scrollToContact = () => {
     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
   };
+
+  useEffect(() => {
+    const isMobile = window.innerWidth < 768;
+    const logo = logoRef.current;
+    const text = textRef.current;
+    const buttons = buttonsRef.current;
+
+    if (!logo || !text || !buttons) return;
+
+    // Create timeline for desktop animations
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+    if (isMobile) {
+      // Mobile animations: fade in from bottom with slight stagger
+      gsap.set([logo, text, buttons], { opacity: 0, y: 30 });
+
+      tl.to(logo, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+      })
+        .to(
+          text,
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: "power2.out",
+          },
+          "-=0.7"
+        )
+        .to(
+          buttons,
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: "power2.out",
+          },
+          "-=0.7"
+        );
+    } else {
+      // Desktop animations: logo from left, text from right (meeting in the middle)
+      gsap.set(logo, { opacity: 0, x: -100 });
+      gsap.set(text, { opacity: 0, x: 100 });
+      gsap.set(buttons, { opacity: 0, y: 20 });
+
+      tl.to(logo, {
+        opacity: 1,
+        x: 0,
+        duration: 1.2,
+        ease: "power3.out",
+      })
+        .to(
+          text,
+          {
+            opacity: 1,
+            x: 0,
+            duration: 1.2,
+            ease: "power3.out",
+          },
+          "-=0.8"
+        )
+        .to(
+          buttons,
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power2.out",
+          },
+          "-=0.6"
+        );
+    }
+  }, []);
 
   return (
     <section id="hero" className="relative min-h-screen grass-texture flex items-center justify-center overflow-hidden">
@@ -19,7 +101,7 @@ const Hero = () => {
       <div className="relative z-10 container mx-auto px-4 pt-24 md:pt-16 pb-20 min-h-screen flex items-start md:items-center">
         <div className="w-full grid md:grid-cols-2 gap-6 md:gap-12 lg:gap-16 items-center">
           {/* Left Side - Logo */}
-          <div className="relative w-full animate-fade-in flex justify-center md:justify-start md:translate-y-0">
+          <div ref={logoRef} className="relative w-full flex justify-center md:justify-start md:translate-y-0">
             <img 
               src="/Build a baller logo main.png" 
               alt="BuildaBaller" 
@@ -28,7 +110,7 @@ const Hero = () => {
           </div>
           
           {/* Right Side - Text and Buttons */}
-          <div className="flex flex-col justify-center items-center md:items-start space-y-6 md:space-y-8 animate-fade-in mt-8 md:mt-0" style={{ animationDelay: '0.2s' }}>
+          <div ref={textRef} className="flex flex-col justify-center items-center md:items-start space-y-6 md:space-y-8 mt-8 md:mt-0">
             <div className="space-y-4 md:space-y-6 text-center md:text-left">
               <h1 className="text-3xl md:text-6xl lg:text-7xl font-bold text-white leading-tight drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)] md:drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)]">
                 Transform Your Game
@@ -39,7 +121,7 @@ const Hero = () => {
               </p>
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-4 pt-2" style={{ animationDelay: '0.4s' }}>
+            <div ref={buttonsRef} className="flex flex-col sm:flex-row gap-4 pt-2">
               <Button 
                 size="lg"
                 onClick={scrollToContact}
