@@ -30,7 +30,7 @@ const Hero = () => {
       tl.to(logo, {
         opacity: 1,
         y: 0,
-        duration: 1,
+        duration: 1.5,
         ease: "power2.out",
       })
         .to(
@@ -38,20 +38,20 @@ const Hero = () => {
           {
             opacity: 1,
             y: 0,
-            duration: 1,
+            duration: 1.5,
             ease: "power2.out",
           },
-          "-=0.7"
+          "-=1.05"
         )
         .to(
           buttons,
           {
             opacity: 1,
             y: 0,
-            duration: 1,
+            duration: 1.5,
             ease: "power2.out",
           },
-          "-=0.7"
+          "-=1.05"
         );
     } else {
       // Desktop animations: logo from left, text from right (meeting in the middle)
@@ -62,7 +62,7 @@ const Hero = () => {
       tl.to(logo, {
         opacity: 1,
         x: 0,
-        duration: 1.2,
+        duration: 1.8,
         ease: "power3.out",
       })
         .to(
@@ -70,20 +70,20 @@ const Hero = () => {
           {
             opacity: 1,
             x: 0,
-            duration: 1.2,
+            duration: 1.8,
             ease: "power3.out",
           },
-          "-=0.8"
+          "-=1.2"
         )
         .to(
           buttons,
           {
             opacity: 1,
             y: 0,
-            duration: 0.8,
+            duration: 1.2,
             ease: "power2.out",
           },
-          "-=0.6"
+          "-=0.9"
         );
     }
   }, []);
