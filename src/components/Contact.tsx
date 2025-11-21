@@ -127,7 +127,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <p className="text-sm text-white/60 font-medium mb-0.5">Location</p>
-                      <p className="font-semibold">Various locations across the area</p>
+                      <p className="font-semibold">Located in Bury, Greater Manchester</p>
                     </div>
                   </div>
                 </div>
@@ -136,18 +136,18 @@ const Contact = () => {
           </div>
 
           {/* WhatsApp CTA */}
-          <Card ref={whatsappCtaRef} id="contact-form" className="p-8 lg:p-12 border-0 shadow-2xl bg-gradient-to-br from-[#25D366]/10 via-[#25D366]/5 to-transparent rounded-[2.5rem] relative overflow-hidden">
+          <Card ref={whatsappCtaRef} id="contact-form" className="p-6 md:p-8 lg:p-12 border-0 shadow-2xl bg-gradient-to-br from-[#25D366]/10 via-[#25D366]/5 to-transparent rounded-[2.5rem] relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#25D366]/10 rounded-full blur-3xl -mr-32 -mt-32" />
             <div className="relative z-10 text-center">
               <div className="inline-flex items-center justify-center w-20 h-20 bg-[#25D366] rounded-full mb-6 shadow-lg">
                 <MessageCircle className="w-10 h-10 text-white" />
               </div>
               
-              <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4 drop-shadow-md">
+              <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-4 drop-shadow-md">
                 Book Your Session via WhatsApp
               </h3>
               
-              <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+              <p className="text-base md:text-lg text-muted-foreground mb-6 md:mb-8 max-w-2xl mx-auto px-2">
                 Get instant responses and book your training session directly through WhatsApp. Our coaches are ready to help you transform your game!
               </p>
 
@@ -155,14 +155,15 @@ const Contact = () => {
                 href="https://wa.me/+447496154688"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="block w-full"
               >
                 <Button 
                   size="lg"
-                  className="bg-[#25D366] hover:bg-[#20BA5A] text-white font-bold text-lg px-10 py-7 rounded-full shadow-2xl shadow-[#25D366]/30 transition-all hover:scale-105 group"
+                  className="w-full md:w-auto bg-[#25D366] hover:bg-[#20BA5A] text-white font-bold text-base md:text-lg px-6 md:px-10 py-5 md:py-7 rounded-full shadow-2xl shadow-[#25D366]/30 transition-all hover:scale-105 group"
                 >
-                  <MessageCircle className="mr-3 h-6 w-6" />
-                  Message Us on WhatsApp
-                  <ArrowRight className="ml-3 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                  <MessageCircle className="mr-2 md:mr-3 h-5 w-5 md:h-6 md:w-6" />
+                  <span className="whitespace-nowrap">Message Us on WhatsApp</span>
+                  <ArrowRight className="ml-2 md:ml-3 h-4 w-4 md:h-5 md:w-5 transition-transform group-hover:translate-x-1" />
                 </Button>
               </a>
 
