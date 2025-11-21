@@ -98,7 +98,7 @@ const Coaches = () => {
             Meet Your Coaches
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Three semi-professional footballers who live and breathe the game, dedicated to helping you become the best player you can be.
+            We are three professional and semi-professional footballers who live and breathe the game, dedicated to helping you become the best player you can be.
           </p>
         </div>
 

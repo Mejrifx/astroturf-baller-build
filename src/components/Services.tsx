@@ -68,7 +68,7 @@ const Services = () => {
   const services = [
     {
       title: "1-on-1 Training",
-      price: "From £40/session",
+      price: "£30/session",
       image: "/build-a-baller-image1.jpg",
       features: [
         "Personalized training plan",
@@ -80,7 +80,7 @@ const Services = () => {
     },
     {
       title: "Small Group Sessions",
-      price: "From £25/session",
+      price: "£20/session",
       image: "/build-a-baller-image2.jpg",
       features: [
         "Max 6 players per group",
