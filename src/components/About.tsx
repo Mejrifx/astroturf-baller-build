@@ -1,6 +1,144 @@
+import { useEffect, useRef } from "react";
 import { Target, Trophy, Users, Award } from "lucide-react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// Register ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
+  const headerRef = useRef<HTMLDivElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
+  const missionRef = useRef<HTMLDivElement>(null);
+  const imagesRef = useRef<HTMLDivElement>(null);
+  const featuresRef = useRef<HTMLDivElement[]>([]);
+
+  useEffect(() => {
+    // Header animation
+    if (headerRef.current) {
+      gsap.fromTo(
+        headerRef.current,
+        {
+          opacity: 0,
+          y: 60,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    }
+
+    // Stats animation
+    if (statsRef.current) {
+      const statCards = statsRef.current.children;
+      gsap.fromTo(
+        Array.from(statCards),
+        {
+          opacity: 0,
+          y: 40,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          stagger: 0.1,
+          scrollTrigger: {
+            trigger: statsRef.current,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    }
+
+    // Mission block animation
+    if (missionRef.current) {
+      gsap.fromTo(
+        missionRef.current,
+        {
+          opacity: 0,
+          y: 40,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: missionRef.current,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    }
+
+    // Images row animation
+    if (imagesRef.current) {
+      const imageCards = imagesRef.current.children;
+      gsap.fromTo(
+        Array.from(imageCards),
+        {
+          opacity: 0,
+          y: 50,
+          scale: 0.95,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.9,
+          ease: "power3.out",
+          stagger: 0.15,
+          scrollTrigger: {
+            trigger: imagesRef.current,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    }
+
+    // Features cards animation
+    featuresRef.current.forEach((feature, index) => {
+      if (feature) {
+        gsap.fromTo(
+          feature,
+          {
+            opacity: 0,
+            y: 50,
+            scale: 0.95,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.9,
+            ease: "power3.out",
+            delay: index * 0.1,
+            scrollTrigger: {
+              trigger: feature,
+              start: "top 85%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      }
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
   const stats = [
     { number: "500+", label: "Players Trained" },
     { number: "15+", label: "Years Combined Experience" },
@@ -42,7 +180,7 @@ const About = () => {
       
       <div className="container mx-auto px-4 relative z-10">
         {/* Header - Integrated with Live Sessions Image */}
-        <div className="relative rounded-3xl overflow-hidden shadow-2xl mb-16 animate-fade-in group">
+        <div ref={headerRef} className="relative rounded-3xl overflow-hidden shadow-2xl mb-16 group">
           {/* Mobile: Image Background */}
           <div className="md:hidden absolute inset-0">
             <img 
@@ -86,7 +224,7 @@ const About = () => {
         {/* Main Content - Bento Grid Layout */}
         <div className="grid lg:grid-cols-12 gap-8 mb-20 max-w-7xl mx-auto">
           {/* Stats Block - Top Left */}
-          <div className="lg:col-span-4 grid grid-cols-2 gap-4 animate-fade-up" style={{ animationDelay: '0.1s' }}>
+          <div ref={statsRef} className="lg:col-span-4 grid grid-cols-2 gap-4">
             {stats.map((stat, index) => (
               <div 
                 key={index}
@@ -103,7 +241,7 @@ const About = () => {
           </div>
 
           {/* Mission Block - Top Right */}
-          <div className="lg:col-span-8 bg-gradient-to-br from-pitch to-pitch/90 p-8 rounded-3xl shadow-xl border border-white/10 flex flex-col justify-center animate-fade-up" style={{ animationDelay: '0.2s' }}>
+          <div ref={missionRef} className="lg:col-span-8 bg-gradient-to-br from-pitch to-pitch/90 p-8 rounded-3xl shadow-xl border border-white/10 flex flex-col justify-center">
             <h3 className="text-2xl font-bold text-white mb-4 drop-shadow-lg">
               Our Mission
             </h3>
@@ -115,7 +253,7 @@ const About = () => {
         </div>
 
         {/* Images Row - Above Features (Desktop only) */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto mb-8 animate-fade-up" style={{ animationDelay: '0.4s' }}>
+        <div ref={imagesRef} className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto mb-8">
           <div className="relative rounded-3xl overflow-hidden h-56 shadow-xl group">
             <img src="/build-a-baller-image4.jpg" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Training" />
           </div>
@@ -135,8 +273,10 @@ const About = () => {
           {features.map((feature, index) => (
             <div 
               key={index}
+              ref={(el) => {
+                if (el) featuresRef.current[index] = el;
+              }}
               className="group relative overflow-hidden rounded-3xl shadow-lg border border-border hover:border-secondary transition-all hover:-translate-y-2"
-              style={{ animationDelay: `${0.5 + (index * 0.1)}s` }}
             >
               {/* Mobile: Image Background */}
               <div className="md:hidden absolute inset-0">
