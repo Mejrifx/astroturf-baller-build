@@ -1,7 +1,92 @@
+import { useEffect, useRef } from "react";
 import { Star, Quote } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Testimonials = () => {
+  const headerRef = useRef<HTMLDivElement>(null);
+  const badgeRef = useRef<HTMLDivElement>(null);
+  const testimonialsRef = useRef<HTMLDivElement[]>([]);
+
+  useEffect(() => {
+    // Header animation
+    if (headerRef.current) {
+      gsap.fromTo(
+        headerRef.current,
+        {
+          opacity: 0,
+          y: 60,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    }
+
+    // Badge animation
+    if (badgeRef.current) {
+      gsap.fromTo(
+        badgeRef.current,
+        {
+          opacity: 0,
+          scale: 0.9,
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: badgeRef.current,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    }
+
+    // Testimonials cards animation
+    testimonialsRef.current.forEach((testimonial, index) => {
+      if (testimonial) {
+        gsap.fromTo(
+          testimonial,
+          {
+            opacity: 0,
+            y: 40,
+            scale: 0.95,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.8,
+            ease: "power2.out",
+            delay: index * 0.1,
+            scrollTrigger: {
+              trigger: testimonial,
+              start: "top 85%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      }
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
   const testimonials = [
     {
       name: "James Wilson",
@@ -60,7 +145,7 @@ const Testimonials = () => {
       
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
-        <div className="text-center mb-16 animate-fade-in">
+        <div ref={headerRef} className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 drop-shadow-lg">
             What Our Players Say
           </h2>
@@ -69,7 +154,7 @@ const Testimonials = () => {
           </p>
           
           {/* Call to action badge */}
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-secondary/10 to-primary/10 px-6 py-3 rounded-full border-2 border-secondary/20 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+          <div ref={badgeRef} className="inline-flex items-center gap-2 bg-gradient-to-r from-secondary/10 to-primary/10 px-6 py-3 rounded-full border-2 border-secondary/20">
             <Star className="w-5 h-5 text-secondary fill-secondary" />
             <span className="text-foreground font-semibold">
               Join hundreds of satisfied players and parents
@@ -83,8 +168,10 @@ const Testimonials = () => {
           {testimonials.map((testimonial, index) => (
             <Card 
               key={index}
+              ref={(el) => {
+                if (el) testimonialsRef.current[index] = el;
+              }}
               className="p-8 hover-lift bg-card/50 backdrop-blur-sm border border-border/50 hover:border-secondary/50 transition-all relative overflow-hidden group rounded-3xl shadow-sm hover:shadow-xl"
-              style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Subtle background pattern */}
               <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">

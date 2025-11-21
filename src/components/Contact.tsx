@@ -1,39 +1,90 @@
-import { useState } from "react";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { useEffect, useRef } from "react";
+import { Mail, Phone, MapPin, MessageCircle, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
-import { useToast } from "@/hooks/use-toast";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Contact = () => {
-  const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: ""
-  });
+  const headerRef = useRef<HTMLDivElement>(null);
+  const contactInfoRef = useRef<HTMLDivElement>(null);
+  const whatsappCtaRef = useRef<HTMLDivElement>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Here you would typically send the form data to a backend
-    toast({
-      title: "Message Sent!",
-      description: "We'll get back to you within 24 hours.",
-    });
-    
-    // Reset form
-    setFormData({ name: "", email: "", phone: "", message: "" });
-  };
+  useEffect(() => {
+    // Header animation
+    if (headerRef.current) {
+      gsap.fromTo(
+        headerRef.current,
+        {
+          opacity: 0,
+          y: 60,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }));
-  };
+    // Contact info animation
+    if (contactInfoRef.current) {
+      gsap.fromTo(
+        contactInfoRef.current,
+        {
+          opacity: 0,
+          x: -50,
+        },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: contactInfoRef.current,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    }
+
+    // WhatsApp CTA animation
+    if (whatsappCtaRef.current) {
+      gsap.fromTo(
+        whatsappCtaRef.current,
+        {
+          opacity: 0,
+          y: 40,
+          scale: 0.95,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: whatsappCtaRef.current,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    }
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
 
   return (
     <section id="contact" className="py-24 bg-muted/30 relative overflow-hidden">
@@ -41,7 +92,7 @@ const Contact = () => {
       <div className="absolute inset-0 opacity-10 grass-texture" />
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16 animate-fade-in">
+        <div ref={headerRef} className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 drop-shadow-lg">
             Get In Touch
           </h2>
@@ -50,33 +101,23 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
+        <div className="max-w-4xl mx-auto space-y-8">
           {/* Contact Info */}
-          <div id="contact-info" className="space-y-6 animate-slide-in-right">
+          <div id="contact-info" ref={contactInfoRef} className="space-y-6">
             <div className="bg-pitch p-8 rounded-[2.5rem] shadow-xl text-white relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-lime/20 rounded-full blur-3xl -mr-16 -mt-16" />
               <div className="relative z-10">
                 <h3 className="text-2xl font-bold mb-2 drop-shadow-md">Contact Information</h3>
-                <p className="text-white/80 mb-8">Reach out to us directly or fill out the form.</p>
+                <p className="text-white/80 mb-8">Reach out to us directly - we're here to help!</p>
                 
                 <div className="space-y-6">
-                  <a href="mailto:info@buildaballer.com" className="flex items-center gap-4 group p-4 rounded-2xl bg-white/5 hover:bg-white/10 transition-colors">
+                  <a href="mailto:buildaballerofficial@gmail.com" className="flex items-center gap-4 group p-4 rounded-2xl bg-white/5 hover:bg-white/10 transition-colors">
                     <div className="w-12 h-12 bg-lime rounded-xl flex items-center justify-center text-pitch">
                       <Mail className="w-6 h-6" />
                     </div>
                     <div>
                       <p className="text-sm text-white/60 font-medium mb-0.5">Email Us</p>
-                      <p className="font-semibold group-hover:text-lime transition-colors">info@buildaballer.com</p>
-                    </div>
-                  </a>
-
-                  <a href="tel:+447123456789" className="flex items-center gap-4 group p-4 rounded-2xl bg-white/5 hover:bg-white/10 transition-colors">
-                    <div className="w-12 h-12 bg-lime rounded-xl flex items-center justify-center text-pitch">
-                      <Phone className="w-6 h-6" />
-                    </div>
-                    <div>
-                      <p className="text-sm text-white/60 font-medium mb-0.5">Call Us</p>
-                      <p className="font-semibold group-hover:text-lime transition-colors">+44 7123 456 789</p>
+                      <p className="font-semibold group-hover:text-lime transition-colors">buildaballerofficial@gmail.com</p>
                     </div>
                   </a>
 
@@ -94,77 +135,41 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Contact Form */}
-          <Card id="contact-form" className="p-8 lg:p-10 border-0 shadow-2xl bg-card rounded-[2.5rem] animate-fade-up">
-            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2 drop-shadow-md">
-              Book a Session
-            </h3>
-            <p className="text-muted-foreground mb-8">Fill out the form below and we'll get back to you shortly.</p>
-            
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div className="grid sm:grid-cols-2 gap-5">
-                <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-medium text-foreground ml-1">Name</label>
-                  <Input
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="h-12 rounded-xl bg-muted/30 border-transparent focus:border-secondary focus:bg-background transition-all"
-                    placeholder="John Smith"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="phone" className="text-sm font-medium text-foreground ml-1">Phone</label>
-                  <Input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className="h-12 rounded-xl bg-muted/30 border-transparent focus:border-secondary focus:bg-background transition-all"
-                    placeholder="+44 7123 456789"
-                  />
-                </div>
+          {/* WhatsApp CTA */}
+          <Card ref={whatsappCtaRef} id="contact-form" className="p-8 lg:p-12 border-0 shadow-2xl bg-gradient-to-br from-[#25D366]/10 via-[#25D366]/5 to-transparent rounded-[2.5rem] relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-[#25D366]/10 rounded-full blur-3xl -mr-32 -mt-32" />
+            <div className="relative z-10 text-center">
+              <div className="inline-flex items-center justify-center w-20 h-20 bg-[#25D366] rounded-full mb-6 shadow-lg">
+                <MessageCircle className="w-10 h-10 text-white" />
               </div>
+              
+              <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4 drop-shadow-md">
+                Book Your Session via WhatsApp
+              </h3>
+              
+              <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+                Get instant responses and book your training session directly through WhatsApp. Our coaches are ready to help you transform your game!
+              </p>
 
-              <div className="space-y-2">
-                <label htmlFor="email" className="text-sm font-medium text-foreground ml-1">Email</label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="h-12 rounded-xl bg-muted/30 border-transparent focus:border-secondary focus:bg-background transition-all"
-                  placeholder="john@example.com"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-medium text-foreground ml-1">Message</label>
-                <Textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={4}
-                  className="rounded-xl bg-muted/30 border-transparent focus:border-secondary focus:bg-background transition-all resize-none p-4"
-                  placeholder="Tell us about your football goals..."
-                />
-              </div>
-
-              <Button 
-                type="submit"
-                className="w-full h-14 text-lg bg-secondary hover:bg-secondary/90 text-white font-bold rounded-xl transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-secondary/25 mt-2"
+              <a
+                href="https://wa.me/+447496154688"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                Send Message
-                <Send className="ml-2 h-5 w-5" />
-              </Button>
-            </form>
+                <Button 
+                  size="lg"
+                  className="bg-[#25D366] hover:bg-[#20BA5A] text-white font-bold text-lg px-10 py-7 rounded-full shadow-2xl shadow-[#25D366]/30 transition-all hover:scale-105 group"
+                >
+                  <MessageCircle className="mr-3 h-6 w-6" />
+                  Message Us on WhatsApp
+                  <ArrowRight className="ml-3 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                </Button>
+              </a>
+
+              <p className="text-sm text-muted-foreground mt-6">
+                Click to open WhatsApp and start a conversation
+              </p>
+            </div>
           </Card>
         </div>
       </div>

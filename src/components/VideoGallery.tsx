@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { Play, Pause, Volume2, VolumeX } from 'lucide-react';
 import { cn } from "@/lib/utils";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   Carousel,
   CarouselContent,
@@ -8,6 +10,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const videos = [
   "/BAB-Vid1.mp4",
@@ -131,6 +135,59 @@ const VideoCard = ({ src, index }: { src: string; index: number }) => {
 };
 
 const VideoGallery = () => {
+  const headerRef = useRef<HTMLDivElement>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Header animation
+    if (headerRef.current) {
+      gsap.fromTo(
+        headerRef.current,
+        {
+          opacity: 0,
+          y: 60,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    }
+
+    // Carousel animation
+    if (carouselRef.current) {
+      gsap.fromTo(
+        carouselRef.current,
+        {
+          opacity: 0,
+          y: 40,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: carouselRef.current,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    }
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
+
   return (
     <section id="gallery" className="py-24 bg-muted/30 relative overflow-hidden">
       {/* Background pattern */}
@@ -138,7 +195,7 @@ const VideoGallery = () => {
       
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
-        <div className="text-center mb-16 animate-fade-in">
+        <div ref={headerRef} className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 drop-shadow-lg">
             See Us in Action
           </h2>
@@ -148,7 +205,7 @@ const VideoGallery = () => {
         </div>
 
         {/* Video Carousel */}
-        <div className="w-full max-w-7xl mx-auto px-12">
+        <div ref={carouselRef} className="w-full max-w-7xl mx-auto px-12">
           <Carousel
             opts={{
               align: "start",

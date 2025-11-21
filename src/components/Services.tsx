@@ -1,8 +1,70 @@
+import { useEffect, useRef } from "react";
 import { Check, ArrowRight } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Services = () => {
+  const headerRef = useRef<HTMLDivElement>(null);
+  const servicesRef = useRef<HTMLDivElement[]>([]);
+
+  useEffect(() => {
+    // Header animation
+    if (headerRef.current) {
+      gsap.fromTo(
+        headerRef.current,
+        {
+          opacity: 0,
+          y: 60,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    }
+
+    // Services cards animation
+    servicesRef.current.forEach((service, index) => {
+      if (service) {
+        gsap.fromTo(
+          service,
+          {
+            opacity: 0,
+            y: 50,
+            scale: 0.95,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.9,
+            ease: "power3.out",
+            delay: index * 0.15,
+            scrollTrigger: {
+              trigger: service,
+              start: "top 85%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      }
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
   const services = [
     {
       title: "1-on-1 Training",
@@ -53,7 +115,7 @@ const Services = () => {
       <div className="absolute inset-0 grass-texture opacity-5" />
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16 animate-fade-in">
+        <div ref={headerRef} className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 drop-shadow-lg">
             Our Services
           </h2>
@@ -66,12 +128,14 @@ const Services = () => {
           {services.map((service, index) => (
             <Card 
               key={index}
+              ref={(el) => {
+                if (el) servicesRef.current[index] = el;
+              }}
               className={`group overflow-hidden hover-lift transition-all relative border-0 shadow-2xl rounded-[2rem] ${
                 service.popular 
                   ? 'ring-2 ring-secondary shadow-glow bg-secondary/5' 
                   : 'bg-card'
               }`}
-              style={{ animationDelay: `${index * 0.1}s` }}
             >
               {service.popular && (
                 <div className="absolute top-4 right-4 z-20 bg-secondary text-white px-4 py-1.5 rounded-full font-bold text-xs uppercase tracking-wider shadow-lg">
