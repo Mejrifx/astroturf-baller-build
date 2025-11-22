@@ -297,6 +297,22 @@ const VideoCard = ({ src, index }: { src: string; index: number }) => {
     video.addEventListener('pause', onPause);
     video.addEventListener('play', onPlay);
 
+    // Handle fullscreen changes
+    const handleFullscreenChange = () => {
+      const isFullscreenActive = !!(
+        document.fullscreenElement ||
+        (document as any).webkitFullscreenElement ||
+        (document as any).mozFullScreenElement ||
+        (document as any).msFullscreenElement
+      );
+      setIsFullscreen(isFullscreenActive);
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+    document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+    document.addEventListener('MSFullscreenChange', handleFullscreenChange);
+
     // Sync muted state when isMuted changes
     const syncMutedState = () => {
       if (video.muted !== isMuted) {
@@ -309,6 +325,10 @@ const VideoCard = ({ src, index }: { src: string; index: number }) => {
       observer.disconnect();
       video.removeEventListener('pause', onPause);
       video.removeEventListener('play', onPlay);
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
+      document.removeEventListener('mozfullscreenchange', handleFullscreenChange);
+      document.removeEventListener('MSFullscreenChange', handleFullscreenChange);
     };
   }, [posterUrl, isMuted]);
 
