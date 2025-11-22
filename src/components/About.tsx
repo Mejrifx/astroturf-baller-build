@@ -143,7 +143,7 @@ const About = () => {
     { number: "500+", label: "Players Trained" },
     { number: "15+", label: "Years Combined Experience" },
     { number: "100%", label: "Player Satisfaction" },
-    { number: "3", label: "Semi-Pro Coaches" }
+    { number: "10+", label: "Pro/Semi-pro Coaches" }
   ];
 
   const features = [
@@ -216,7 +216,7 @@ const About = () => {
 
             {/* Description */}
             <p className="text-xl text-white/90 max-w-3xl leading-relaxed drop-shadow-md">
-              Where passion meets expertise. We're three semi-professional footballers dedicated to helping young players reach their full potential through expert coaching, structured training, and genuine love for the game.
+              Where passion meets expertise. We're 10+ professional/semi-professional footballers dedicated to helping young players reach their full potential through expert coaching, structured training, and genuine love for the game.
             </p>
           </div>
         </div>

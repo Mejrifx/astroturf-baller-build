@@ -117,7 +117,7 @@ const Hero = () => {
               </h1>
               
               <p className="text-base md:text-xl lg:text-2xl text-white font-medium leading-relaxed max-w-2xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] md:drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
-                Professional football coaching by semi-pro players who are passionate about developing the next generation of ballers
+                Professional football coaching by pro/semi-pro players who are passionate about developing the next generation of ballers
               </p>
             </div>
             
