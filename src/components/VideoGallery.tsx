@@ -37,7 +37,15 @@ const VideoCard = ({ src, index }: { src: string; index: number }) => {
   const [posterUrl, setPosterUrl] = useState<string | null>(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
-  const togglePlay = () => {
+  const togglePlay = (e?: React.MouseEvent) => {
+    // Don't toggle play if clicking on control buttons
+    if (e) {
+      const target = e.target as HTMLElement;
+      if (target.closest('button') || target.closest('[role="button"]')) {
+        return;
+      }
+    }
+    
     if (videoRef.current) {
       if (isPlaying) {
         videoRef.current.pause();
@@ -55,22 +63,33 @@ const VideoCard = ({ src, index }: { src: string; index: number }) => {
   const toggleMute = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
+    
     if (videoRef.current) {
-      // Store current time and playing state
+      // Store current time and playing state BEFORE any changes
       const wasPlaying = !videoRef.current.paused;
       const currentTime = videoRef.current.currentTime;
       
-      // Toggle muted state
+      // Toggle muted state directly on video element
       const newMutedState = !isMuted;
       videoRef.current.muted = newMutedState;
       setIsMuted(newMutedState);
       
-      // Restore playing state and time if video was playing
-      if (wasPlaying && videoRef.current.paused) {
-        videoRef.current.currentTime = currentTime;
-        videoRef.current.play().catch(() => {
-          // Ignore play errors (e.g., if autoplay is blocked)
-        });
+      // Ensure video continues playing if it was playing
+      // Don't reset currentTime unless video was actually paused
+      if (wasPlaying) {
+        // If video got paused somehow, restore it
+        if (videoRef.current.paused) {
+          videoRef.current.currentTime = currentTime;
+          videoRef.current.play().catch(() => {
+            // Ignore play errors
+          });
+        } else {
+          // Just ensure time wasn't reset
+          if (Math.abs(videoRef.current.currentTime - currentTime) > 0.5) {
+            videoRef.current.currentTime = currentTime;
+          }
+        }
       }
     }
   };
@@ -78,6 +97,8 @@ const VideoCard = ({ src, index }: { src: string; index: number }) => {
   const toggleFullscreen = async (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
+    
     const container = containerRef.current;
     const video = videoRef.current;
     if (!container || !video) return;
@@ -91,7 +112,18 @@ const VideoCard = ({ src, index }: { src: string; index: number }) => {
       );
 
       if (!isCurrentlyFullscreen) {
-        // Enter fullscreen - try container first, then video
+        // Check if we're on iOS/mobile - use webkitEnterFullscreen for video
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        
+        if ((isIOS || isMobile) && (video as any).webkitEnterFullscreen) {
+          // iOS/mobile: Use native video fullscreen
+          (video as any).webkitEnterFullscreen();
+          setIsFullscreen(true);
+          return;
+        }
+
+        // Desktop: Enter fullscreen - try container first, then video
         let fullscreenPromise: Promise<void> | null = null;
 
         if (container.requestFullscreen) {
