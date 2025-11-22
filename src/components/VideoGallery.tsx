@@ -29,6 +29,7 @@ const videos = [
 
 const VideoCard = ({ src, index }: { src: string; index: number }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
@@ -55,23 +56,58 @@ const VideoCard = ({ src, index }: { src: string; index: number }) => {
     e.preventDefault();
     e.stopPropagation();
     if (videoRef.current) {
+      // Store current time and playing state
+      const wasPlaying = !videoRef.current.paused;
+      const currentTime = videoRef.current.currentTime;
+      
+      // Toggle muted state
       const newMutedState = !isMuted;
       videoRef.current.muted = newMutedState;
       setIsMuted(newMutedState);
+      
+      // Restore playing state and time if video was playing
+      if (wasPlaying && videoRef.current.paused) {
+        videoRef.current.currentTime = currentTime;
+        videoRef.current.play().catch(() => {
+          // Ignore play errors (e.g., if autoplay is blocked)
+        });
+      }
     }
   };
 
-  const toggleFullscreen = (e: React.MouseEvent) => {
+  const toggleFullscreen = async (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    const container = containerRef.current;
     const video = videoRef.current;
-    if (!video) return;
+    if (!container || !video) return;
 
     try {
-      if (!document.fullscreenElement) {
-        // Enter fullscreen
-        if (video.requestFullscreen) {
-          video.requestFullscreen().then(() => setIsFullscreen(true));
+      const isCurrentlyFullscreen = !!(
+        document.fullscreenElement ||
+        (document as any).webkitFullscreenElement ||
+        (document as any).mozFullScreenElement ||
+        (document as any).msFullscreenElement
+      );
+
+      if (!isCurrentlyFullscreen) {
+        // Enter fullscreen - try container first, then video
+        let fullscreenPromise: Promise<void> | null = null;
+
+        if (container.requestFullscreen) {
+          fullscreenPromise = container.requestFullscreen().then(() => setIsFullscreen(true));
+        } else if ((container as any).webkitRequestFullscreen) {
+          (container as any).webkitRequestFullscreen();
+          setIsFullscreen(true);
+        } else if ((container as any).mozRequestFullScreen) {
+          (container as any).mozRequestFullScreen();
+          setIsFullscreen(true);
+        } else if ((container as any).msRequestFullscreen) {
+          (container as any).msRequestFullscreen();
+          setIsFullscreen(true);
+        } else if (video.requestFullscreen) {
+          // Fallback to video element
+          fullscreenPromise = video.requestFullscreen().then(() => setIsFullscreen(true));
         } else if ((video as any).webkitRequestFullscreen) {
           (video as any).webkitRequestFullscreen();
           setIsFullscreen(true);
@@ -82,10 +118,16 @@ const VideoCard = ({ src, index }: { src: string; index: number }) => {
           (video as any).msRequestFullscreen();
           setIsFullscreen(true);
         }
+
+        if (fullscreenPromise) {
+          await fullscreenPromise.catch((err) => {
+            console.warn('Fullscreen request failed:', err);
+          });
+        }
       } else {
         // Exit fullscreen
         if (document.exitFullscreen) {
-          document.exitFullscreen().then(() => setIsFullscreen(false));
+          await document.exitFullscreen().then(() => setIsFullscreen(false)).catch(() => {});
         } else if ((document as any).webkitExitFullscreen) {
           (document as any).webkitExitFullscreen();
           setIsFullscreen(false);
@@ -272,6 +314,7 @@ const VideoCard = ({ src, index }: { src: string; index: number }) => {
 
   return (
     <div 
+      ref={containerRef}
       className={cn(
         "relative group rounded-2xl overflow-hidden bg-black aspect-[9/16] shadow-xl transition-all duration-300 h-full",
         "hover:shadow-2xl border border-white/10",
@@ -305,8 +348,8 @@ const VideoCard = ({ src, index }: { src: string; index: number }) => {
         preload="metadata"
         poster={posterUrl || undefined}
         onLoadedData={() => {
-          // Try to show video frame on mobile
-          if (videoRef.current && !isPlaying) {
+          // Try to show video frame on mobile (only if not playing to avoid interrupting playback)
+          if (videoRef.current && !isPlaying && videoRef.current.paused) {
             videoRef.current.currentTime = 0.1;
           }
         }}
