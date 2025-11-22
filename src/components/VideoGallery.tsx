@@ -29,9 +29,11 @@ const videos = [
 
 const VideoCard = ({ src, index }: { src: string; index: number }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [posterUrl, setPosterUrl] = useState<string | null>(null);
 
   const togglePlay = () => {
     if (videoRef.current) {
@@ -56,49 +58,155 @@ const VideoCard = ({ src, index }: { src: string; index: number }) => {
     }
   };
 
+  // Capture first frame as poster image using Intersection Observer
   useEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
+    const canvas = canvasRef.current;
+    if (!video || !canvas) return;
 
-    // Set initial muted state
-    video.muted = isMuted;
+    const captureFrame = () => {
+      try {
+        if (video.videoWidth === 0 || video.videoHeight === 0) return;
+        
+        // Set canvas dimensions to match video
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
 
-    // Load first frame for preview (fixes black screen on mobile)
-    const loadFirstFrame = () => {
-      if (video.readyState >= 2) { // HAVE_CURRENT_DATA
-        video.currentTime = 0.1; // Seek to 0.1s to load first frame
-        video.pause(); // Ensure it stays paused
+        // Draw video frame to canvas
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        
+        // Convert canvas to data URL and use as poster
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
+        setPosterUrl(dataUrl);
+      } catch (error) {
+        console.warn('Failed to capture video frame:', error);
       }
     };
 
-    // Try to load first frame immediately if metadata is already loaded
-    if (video.readyState >= 2) {
-      loadFirstFrame();
-    } else {
-      // Wait for metadata to load
-      video.addEventListener('loadedmetadata', loadFirstFrame, { once: true });
-    }
+    const attemptFrameCapture = async () => {
+      if (video.readyState < 2) return;
+      
+      try {
+        // On mobile, try to trigger frame decoding by briefly playing
+        // This is a workaround for mobile browsers that don't decode frames until play
+        const tryMobileDecode = async () => {
+          try {
+            // Try to play and immediately pause to trigger frame decode
+            const playPromise = video.play();
+            if (playPromise !== undefined) {
+              await playPromise;
+              // Immediately pause
+              video.pause();
+              video.currentTime = 0.1;
+              
+              // Wait a bit for frame to render
+              setTimeout(() => {
+                if (video.videoWidth > 0 && video.videoHeight > 0) {
+                  captureFrame();
+                }
+              }, 150);
+            }
+          } catch (e) {
+            // Autoplay blocked, fall back to seek method
+            video.currentTime = 0.1;
+            const onSeeked = () => {
+              setTimeout(() => {
+                if (video.videoWidth > 0 && video.videoHeight > 0) {
+                  captureFrame();
+                }
+              }, 200);
+              video.removeEventListener('seeked', onSeeked);
+            };
+            video.addEventListener('seeked', onSeeked, { once: true });
+          }
+        };
 
-    // Also try on loadeddata event as fallback
-    video.addEventListener('loadeddata', () => {
-      if (!isPlaying) {
+        // Try seek first (faster, works on desktop)
         video.currentTime = 0.1;
-        video.pause();
+        const onSeeked = () => {
+          setTimeout(() => {
+            if (video.videoWidth > 0 && video.videoHeight > 0) {
+              captureFrame();
+            } else {
+              // If seek didn't work, try mobile decode method
+              tryMobileDecode();
+            }
+          }, 100);
+          video.removeEventListener('seeked', onSeeked);
+        };
+        video.addEventListener('seeked', onSeeked, { once: true });
+        
+        // Fallback timeout
+        setTimeout(() => {
+          if (!posterUrl && video.videoWidth > 0 && video.videoHeight > 0) {
+            captureFrame();
+          } else if (!posterUrl) {
+            tryMobileDecode();
+          }
+        }, 500);
+      } catch (error) {
+        console.warn('Frame capture attempt failed:', error);
       }
-    }, { once: true });
+    };
+
+    // Set initial muted state
+    video.muted = true;
+    video.playsInline = true;
+    
+    // Use Intersection Observer to load video when visible
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Video is visible, try to load and capture frame
+            video.load();
+            
+            const tryCapture = () => {
+              if (video.readyState >= 2) {
+                attemptFrameCapture();
+              } else {
+                // Wait for video to be ready
+                const onCanPlay = () => {
+                  attemptFrameCapture();
+                  video.removeEventListener('canplay', onCanPlay);
+                };
+                video.addEventListener('canplay', onCanPlay, { once: true });
+              }
+            };
+
+            // Try multiple events
+            video.addEventListener('loadedmetadata', () => {
+              video.currentTime = 0.1;
+            }, { once: true });
+
+            video.addEventListener('loadeddata', tryCapture, { once: true });
+            video.addEventListener('canplay', tryCapture, { once: true });
+            video.addEventListener('canplaythrough', tryCapture, { once: true });
+          }
+        });
+      },
+      { rootMargin: '50px' } // Start loading slightly before visible
+    );
+
+    observer.observe(video);
 
     const onPause = () => setIsPlaying(false);
-    const onPlay = () => setIsPlaying(true);
+    const onPlay = () => {
+      setIsPlaying(true);
+    };
 
     video.addEventListener('pause', onPause);
     video.addEventListener('play', onPlay);
 
     return () => {
+      observer.disconnect();
       video.removeEventListener('pause', onPause);
       video.removeEventListener('play', onPlay);
-      video.removeEventListener('loadedmetadata', loadFirstFrame);
     };
-  }, [isMuted, isPlaying]);
+  }, [posterUrl]);
 
   return (
     <div 
@@ -110,20 +218,34 @@ const VideoCard = ({ src, index }: { src: string; index: number }) => {
       onMouseLeave={() => setIsHovered(false)}
       onClick={togglePlay}
     >
+      {/* Hidden canvas for capturing frames */}
+      <canvas ref={canvasRef} className="hidden" />
+      
+      {/* Poster image overlay */}
+      {posterUrl && !isPlaying && (
+        <img
+          src={posterUrl}
+          alt="Video preview"
+          className="absolute inset-0 w-full h-full object-cover z-0"
+        />
+      )}
+      
       <video
         ref={videoRef}
         src={src}
-        className="w-full h-full object-cover cursor-pointer"
+        className={cn(
+          "w-full h-full object-cover cursor-pointer relative z-10 transition-opacity duration-300",
+          posterUrl && !isPlaying ? "opacity-0" : "opacity-100"
+        )}
         playsInline
         loop
         muted={isMuted}
-        preload="auto"
-        onLoadedMetadata={(e) => {
-          // Force load first frame for preview
-          const video = e.currentTarget;
-          if (video.readyState >= 2 && video.paused) {
-            video.currentTime = 0.1;
-            video.pause();
+        preload="metadata"
+        poster={posterUrl || undefined}
+        onLoadedData={() => {
+          // Try to show video frame on mobile
+          if (videoRef.current && !isPlaying) {
+            videoRef.current.currentTime = 0.1;
           }
         }}
       />
