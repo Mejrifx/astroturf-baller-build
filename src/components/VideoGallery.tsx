@@ -63,6 +63,30 @@ const VideoCard = ({ src, index }: { src: string; index: number }) => {
     // Set initial muted state
     video.muted = isMuted;
 
+    // Load first frame for preview (fixes black screen on mobile)
+    const loadFirstFrame = () => {
+      if (video.readyState >= 2) { // HAVE_CURRENT_DATA
+        video.currentTime = 0.1; // Seek to 0.1s to load first frame
+        video.pause(); // Ensure it stays paused
+      }
+    };
+
+    // Try to load first frame immediately if metadata is already loaded
+    if (video.readyState >= 2) {
+      loadFirstFrame();
+    } else {
+      // Wait for metadata to load
+      video.addEventListener('loadedmetadata', loadFirstFrame, { once: true });
+    }
+
+    // Also try on loadeddata event as fallback
+    video.addEventListener('loadeddata', () => {
+      if (!isPlaying) {
+        video.currentTime = 0.1;
+        video.pause();
+      }
+    }, { once: true });
+
     const onPause = () => setIsPlaying(false);
     const onPlay = () => setIsPlaying(true);
 
@@ -72,8 +96,9 @@ const VideoCard = ({ src, index }: { src: string; index: number }) => {
     return () => {
       video.removeEventListener('pause', onPause);
       video.removeEventListener('play', onPlay);
+      video.removeEventListener('loadedmetadata', loadFirstFrame);
     };
-  }, [isMuted]);
+  }, [isMuted, isPlaying]);
 
   return (
     <div 
@@ -92,7 +117,15 @@ const VideoCard = ({ src, index }: { src: string; index: number }) => {
         playsInline
         loop
         muted={isMuted}
-        preload="metadata"
+        preload="auto"
+        onLoadedMetadata={(e) => {
+          // Force load first frame for preview
+          const video = e.currentTarget;
+          if (video.readyState >= 2 && video.paused) {
+            video.currentTime = 0.1;
+            video.pause();
+          }
+        }}
       />
       
       {/* Overlay Gradient */}
