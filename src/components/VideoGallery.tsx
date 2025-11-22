@@ -94,6 +94,10 @@ const VideoCard = ({ src, index }: { src: string; index: number }) => {
         // This is a workaround for mobile browsers that don't decode frames until play
         const tryMobileDecode = async () => {
           try {
+            // Temporarily mute during frame capture to avoid unwanted audio
+            const originalMutedState = video.muted;
+            video.muted = true;
+            
             // Try to play and immediately pause to trigger frame decode
             const playPromise = video.play();
             if (playPromise !== undefined) {
@@ -102,12 +106,18 @@ const VideoCard = ({ src, index }: { src: string; index: number }) => {
               video.pause();
               video.currentTime = 0.1;
               
+              // Restore original muted state
+              video.muted = originalMutedState;
+              
               // Wait a bit for frame to render
               setTimeout(() => {
                 if (video.videoWidth > 0 && video.videoHeight > 0) {
                   captureFrame();
                 }
               }, 150);
+            } else {
+              // Restore if play failed
+              video.muted = originalMutedState;
             }
           } catch (e) {
             // Autoplay blocked, fall back to seek method
@@ -152,8 +162,8 @@ const VideoCard = ({ src, index }: { src: string; index: number }) => {
       }
     };
 
-    // Set initial muted state
-    video.muted = true;
+    // Set initial muted state based on component state
+    video.muted = isMuted;
     video.playsInline = true;
     
     // Use Intersection Observer to load video when visible
@@ -201,12 +211,20 @@ const VideoCard = ({ src, index }: { src: string; index: number }) => {
     video.addEventListener('pause', onPause);
     video.addEventListener('play', onPlay);
 
+    // Sync muted state when isMuted changes
+    const syncMutedState = () => {
+      if (video.muted !== isMuted) {
+        video.muted = isMuted;
+      }
+    };
+    syncMutedState();
+
     return () => {
       observer.disconnect();
       video.removeEventListener('pause', onPause);
       video.removeEventListener('play', onPlay);
     };
-  }, [posterUrl]);
+  }, [posterUrl, isMuted]);
 
   return (
     <div 
