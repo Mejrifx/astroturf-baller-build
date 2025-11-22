@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Play, Pause, Volume2, VolumeX } from 'lucide-react';
+import { Play, Pause, Volume2, VolumeX, Maximize, Minimize } from 'lucide-react';
 import { cn } from "@/lib/utils";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -34,6 +34,7 @@ const VideoCard = ({ src, index }: { src: string; index: number }) => {
   const [isMuted, setIsMuted] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [posterUrl, setPosterUrl] = useState<string | null>(null);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   const togglePlay = () => {
     if (videoRef.current) {
@@ -51,10 +52,53 @@ const VideoCard = ({ src, index }: { src: string; index: number }) => {
   };
 
   const toggleMute = (e: React.MouseEvent) => {
+    e.preventDefault();
     e.stopPropagation();
     if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
+      const newMutedState = !isMuted;
+      videoRef.current.muted = newMutedState;
+      setIsMuted(newMutedState);
+    }
+  };
+
+  const toggleFullscreen = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const video = videoRef.current;
+    if (!video) return;
+
+    try {
+      if (!document.fullscreenElement) {
+        // Enter fullscreen
+        if (video.requestFullscreen) {
+          video.requestFullscreen().then(() => setIsFullscreen(true));
+        } else if ((video as any).webkitRequestFullscreen) {
+          (video as any).webkitRequestFullscreen();
+          setIsFullscreen(true);
+        } else if ((video as any).mozRequestFullScreen) {
+          (video as any).mozRequestFullScreen();
+          setIsFullscreen(true);
+        } else if ((video as any).msRequestFullscreen) {
+          (video as any).msRequestFullscreen();
+          setIsFullscreen(true);
+        }
+      } else {
+        // Exit fullscreen
+        if (document.exitFullscreen) {
+          document.exitFullscreen().then(() => setIsFullscreen(false));
+        } else if ((document as any).webkitExitFullscreen) {
+          (document as any).webkitExitFullscreen();
+          setIsFullscreen(false);
+        } else if ((document as any).mozCancelFullScreen) {
+          (document as any).mozCancelFullScreen();
+          setIsFullscreen(false);
+        } else if ((document as any).msExitFullscreen) {
+          (document as any).msExitFullscreen();
+          setIsFullscreen(false);
+        }
+      }
+    } catch (error) {
+      console.warn('Fullscreen error:', error);
     }
   };
 
@@ -290,17 +334,19 @@ const VideoCard = ({ src, index }: { src: string; index: number }) => {
         isPlaying || isHovered ? "opacity-100" : "opacity-0"
       )}>
         <button 
-          onClick={(e) => { e.stopPropagation(); togglePlay(); }}
-          className="p-2 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-colors"
+          onClick={toggleMute}
+          className="p-2 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-colors z-20"
+          aria-label={isMuted ? "Unmute video" : "Mute video"}
         >
-          {isPlaying ? <Pause className="w-4 h-4 text-white" /> : <Play className="w-4 h-4 text-white" />}
+          {isMuted ? <VolumeX className="w-4 h-4 text-white" /> : <Volume2 className="w-4 h-4 text-white" />}
         </button>
 
         <button 
-          onClick={toggleMute}
-          className="p-2 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-colors"
+          onClick={toggleFullscreen}
+          className="p-2 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-colors z-20"
+          aria-label={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
         >
-          {isMuted ? <VolumeX className="w-4 h-4 text-white" /> : <Volume2 className="w-4 h-4 text-white" />}
+          {isFullscreen ? <Minimize className="w-4 h-4 text-white" /> : <Maximize className="w-4 h-4 text-white" />}
         </button>
       </div>
     </div>
