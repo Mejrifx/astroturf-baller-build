@@ -2,9 +2,6 @@ import { useEffect, useRef } from "react";
 import { Card } from "@/components/ui/card";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import scottImg from "@/assets/coach-scott.jpg";
-import baileyImg from "@/assets/coach-bailey.jpg";
-import ryanImg from "@/assets/coach-ryan.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -68,22 +65,22 @@ const Coaches = () => {
   }, []);
   const coaches = [
     {
-      name: "Scott",
-      image: scottImg,
-      role: "Head Coach",
-      bio: "Semi-professional player with 10+ years of experience. Specializes in technical development and tactical awareness."
-    },
-    {
       name: "Bailey",
-      image: baileyImg,
-      role: "Skills Coach",
+      image: "/Bailey Coach.jpg",
+      role: "Skills Coach/Founder",
       bio: "Dynamic coach focused on ball mastery and creative play. Known for making training sessions fun and engaging."
     },
     {
       name: "Ryan",
-      image: ryanImg,
-      role: "Performance Coach",
+      image: "/Ryan Coach.jpg",
+      role: "Performance Coach/Founder",
       bio: "Expert in physical conditioning and game psychology. Helps players develop mental toughness and confidence."
+    },
+    {
+      name: "Scott",
+      image: "/Scott Coach.jpg",
+      role: "Head Coach/Founder",
+      bio: "Semi-professional player with 10+ years of experience. Specializes in technical development and tactical awareness."
     }
   ];
 
