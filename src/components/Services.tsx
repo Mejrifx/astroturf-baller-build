@@ -110,9 +110,9 @@ const Services = () => {
   };
 
   return (
-    <section id="services" className="py-24 bg-background relative overflow-hidden">
+    <section id="services" className="py-24 bg-background relative">
       {/* Background grass texture */}
-      <div className="absolute inset-0 grass-texture opacity-5" />
+      <div className="absolute inset-0 grass-texture opacity-5 overflow-hidden" />
       
       <div className="container mx-auto px-4 relative z-10">
         <div ref={headerRef} className="text-center mb-16">

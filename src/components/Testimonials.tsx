@@ -139,9 +139,9 @@ const Testimonials = () => {
   ];
 
   return (
-    <section id="testimonials" className="py-24 bg-background relative overflow-hidden">
+    <section id="testimonials" className="py-24 bg-background relative">
       {/* Background elements */}
-      <div className="absolute inset-0 grass-texture opacity-5" />
+      <div className="absolute inset-0 grass-texture opacity-5 overflow-hidden" />
       
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}

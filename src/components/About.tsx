@@ -174,9 +174,9 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-24 bg-muted/30 relative overflow-hidden">
+    <section id="about" className="py-24 bg-muted/30 relative">
       {/* Background grass texture */}
-      <div className="absolute inset-0 grass-texture opacity-10" />
+      <div className="absolute inset-0 grass-texture opacity-10 overflow-hidden" />
       
       <div className="container mx-auto px-4 relative z-10">
         {/* Header - Integrated with Live Sessions Image */}

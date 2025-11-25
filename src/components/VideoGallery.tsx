@@ -503,9 +503,9 @@ const VideoGallery = () => {
   }, []);
 
   return (
-    <section id="gallery" className="py-24 bg-muted/30 relative overflow-hidden">
+    <section id="gallery" className="py-24 bg-muted/30 relative">
       {/* Background pattern */}
-      <div className="absolute inset-0 opacity-10 grass-texture" />
+      <div className="absolute inset-0 opacity-10 grass-texture overflow-hidden" />
       
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
