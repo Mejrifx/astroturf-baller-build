@@ -70,26 +70,37 @@ const Coaches = () => {
   // Animate drawer when showAllCoaches changes
   useEffect(() => {
     if (drawerRef.current) {
+      // Temporarily show to measure height
+      const wasHidden = drawerRef.current.style.display === "none";
+      if (wasHidden) {
+        drawerRef.current.style.display = "block";
+        drawerRef.current.style.visibility = "hidden";
+      }
+      
+      const height = drawerRef.current.scrollHeight;
+      
       if (showAllCoaches) {
-        // Enable interaction and visibility for measurement
+        // Enable interaction and visibility
+        drawerRef.current.style.display = "block";
+        drawerRef.current.style.visibility = "visible";
+        drawerRef.current.style.pointerEvents = "auto";
+        
+        // Set initial state
         gsap.set(drawerRef.current, { 
-          visibility: "visible",
-          pointerEvents: "auto"
+          height: 0,
+          opacity: 0
         });
         
-        // First, set height to auto to measure the actual height
-        gsap.set(drawerRef.current, { height: "auto" });
-        const height = drawerRef.current.scrollHeight;
-        gsap.set(drawerRef.current, { height: 0, opacity: 0 });
-        
-        // Animate to the measured height
+        // Animate open
         gsap.to(drawerRef.current, {
           height: height,
           opacity: 1,
           duration: 0.6,
           ease: "power3.out",
           onComplete: () => {
-            gsap.set(drawerRef.current, { height: "auto" });
+            drawerRef.current!.style.height = "auto";
+            // Refresh ScrollTrigger after layout change
+            ScrollTrigger.refresh();
           }
         });
         
@@ -117,11 +128,7 @@ const Coaches = () => {
           });
         }, 200);
       } else {
-        // Measure current height before closing
-        gsap.set(drawerRef.current, { height: "auto" });
-        const height = drawerRef.current.scrollHeight;
-        gsap.set(drawerRef.current, { height: height });
-        
+        // Animate close
         gsap.to(drawerRef.current, {
           height: 0,
           opacity: 0,
@@ -129,10 +136,12 @@ const Coaches = () => {
           ease: "power2.in",
           onComplete: () => {
             // Hide completely to prevent layout interference
-            gsap.set(drawerRef.current, { 
-              visibility: "hidden",
-              pointerEvents: "none"
-            });
+            drawerRef.current!.style.display = "none";
+            drawerRef.current!.style.visibility = "hidden";
+            drawerRef.current!.style.pointerEvents = "none";
+            drawerRef.current!.style.height = "0";
+            // Refresh ScrollTrigger after layout change
+            ScrollTrigger.refresh();
           }
         });
       }
@@ -272,9 +281,10 @@ const Coaches = () => {
         {/* Drawer for Additional Coaches */}
         <div
           ref={drawerRef}
-          className="overflow-hidden will-change-[height,opacity]"
+          className="overflow-hidden"
           style={{ 
-            height: 0, 
+            display: "none",
+            height: 0,
             opacity: 0,
             visibility: "hidden",
             pointerEvents: "none"
