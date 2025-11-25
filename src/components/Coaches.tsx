@@ -202,7 +202,7 @@ const Coaches = () => {
     },
     {
       name: "Callum",
-      image: "/Coach6.jpg",
+      image: "/Callum Pic.jpg",
       role: "Coach",
       bio: "Currently playing at Fleetwood FC professionally with his youth career being with Everton FC"
     },
