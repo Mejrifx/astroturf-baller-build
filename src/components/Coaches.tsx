@@ -153,19 +153,19 @@ const Coaches = () => {
       name: "Bailey",
       image: "/Bailey Coach.jpg",
       role: "Skills Coach/Founder",
-      bio: "Earned a professional contract with Accrington Stanley while playing for Clitheroe FC. Brings elite-level experience and a proven pathway from grassroots to professional football."
+      bio: "Got his pro contract with Accrington Stanley while still playing for Clitheroe FC. Shows it's possible to go from grassroots to professional level."
     },
     {
       name: "Ryan",
       image: "/Ryan Coach.jpg",
       role: "Performance Coach/Founder",
-      bio: "Academy graduate of Oldham Athletic with professional experience at Ramsbottom United and Longridge Town. Combines elite youth development knowledge with senior football expertise."
+      bio: "Started at Oldham Athletic's academy and has played for Ramsbottom United and Longridge Town. Knows both the academy side and what it takes to play senior football."
     },
     {
       name: "Scott",
       image: "/Scott Coach.jpg",
       role: "Head Coach/Founder",
-      bio: "Altrincham FC academy product with extensive semi-professional experience at Newcastle Town, Bacup Borough, and Daisy Hill. Specializes in technical development and tactical awareness."
+      bio: "Came through Altrincham FC's academy and has played semi-pro at Newcastle Town, Bacup Borough, and Daisy Hill. Focuses on helping players improve their technique and understanding of the game."
     }
   ];
 
@@ -186,7 +186,7 @@ const Coaches = () => {
       name: "Harry",
       image: "/Coach3.jpg",
       role: "Coach",
-      bio: "Currently playing for Bury FC's youth team with a strong foundation in academy football. Provides current, relevant experience in elite youth development pathways."
+      bio: "Plays for Bury FC's youth team and came through the academy system. Knows what it takes to make it at the youth level."
     },
     {
       name: "Dylan",
@@ -204,7 +204,7 @@ const Coaches = () => {
       name: "Callum",
       image: "/Coach6.jpg",
       role: "Coach",
-      bio: "Currently playing professionally for Fleetwood FC with a distinguished youth career at Everton FC. Brings Premier League academy standards and professional football expertise."
+      bio: "Playing professionally at Fleetwood FC after coming through Everton's academy. Knows what it's like to train and play at the highest levels."
     },
     {
       name: "Clarke",
