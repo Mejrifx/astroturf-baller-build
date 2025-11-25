@@ -153,70 +153,70 @@ const Coaches = () => {
       name: "Bailey",
       image: "/Bailey Coach.jpg",
       role: "Skills Coach/Founder",
-      bio: "Dynamic coach focused on ball mastery and creative play. Known for making training sessions fun and engaging."
+      bio: "Earned a professional contract with Accrington Stanley while playing for Clitheroe FC. Brings elite-level experience and a proven pathway from grassroots to professional football."
     },
     {
       name: "Ryan",
       image: "/Ryan Coach.jpg",
       role: "Performance Coach/Founder",
-      bio: "Expert in physical conditioning and game psychology. Helps players develop mental toughness and confidence."
+      bio: "Academy graduate of Oldham Athletic with professional experience at Ramsbottom United and Longridge Town. Combines elite youth development knowledge with senior football expertise."
     },
     {
       name: "Scott",
       image: "/Scott Coach.jpg",
       role: "Head Coach/Founder",
-      bio: "Semi-professional player with 10+ years of experience. Specializes in technical development and tactical awareness."
+      bio: "Altrincham FC academy product with extensive semi-professional experience at Newcastle Town, Bacup Borough, and Daisy Hill. Specializes in technical development and tactical awareness."
     }
   ];
 
   const additionalCoaches = [
     {
-      name: "Coach1",
+      name: "Josh",
       image: "/Coach1.jpg",
-      role: "Coach",
-      bio: "Custom Description"
+      role: "Head Coach",
+      bio: "Currently captaining Elton Vale with extensive academy experience throughout his youth career. Brings strong leadership qualities and a deep understanding of player development."
     },
     {
-      name: "Coach2",
+      name: "Lewis",
       image: "/Coach2.jpg",
       role: "Coach",
-      bio: "Custom Description"
+      bio: "Currently playing for Radcliffe FC's youth team while regularly training with the first team. Offers unique insights into the transition from youth to senior football."
     },
     {
-      name: "Coach3",
+      name: "Harry",
       image: "/Coach3.jpg",
       role: "Coach",
-      bio: "Custom Description"
+      bio: "Currently playing for Bury FC's youth team with a strong foundation in academy football. Provides current, relevant experience in elite youth development pathways."
     },
     {
-      name: "Coach4",
+      name: "Dylan",
       image: "/Coach4.jpg",
       role: "Coach",
-      bio: "Custom Description"
+      bio: "Currently playing for Radcliffe FC's first team with an impressive scoring record, netting 2 goals in his 2 most recent appearances. Demonstrates the results of dedicated training and development."
     },
     {
-      name: "Coach5",
+      name: "Kyle",
       image: "/Coach5.jpg",
       role: "Coach",
-      bio: "Custom Description"
+      bio: "Currently playing for Elton Vale with semi-professional experience at Prestwich Heys and Daisy Hill. Combines current playing experience with proven semi-pro credentials."
     },
     {
-      name: "Coach6",
+      name: "Callum",
       image: "/Coach6.jpg",
       role: "Coach",
-      bio: "Custom Description"
+      bio: "Currently playing professionally for Fleetwood FC with a distinguished youth career at Everton FC. Brings Premier League academy standards and professional football expertise."
     },
     {
-      name: "Coach7",
+      name: "Clarke",
       image: "/Coach7.jpg",
       role: "Coach",
-      bio: "Custom Description"
+      bio: "Currently playing for Tottington United on dual registration with Radcliffe FC. Academy graduate of Accrington Stanley, offering professional academy training methods."
     },
     {
-      name: "Coach8",
+      name: "Max",
       image: "/Coach8.jpg",
       role: "Coach",
-      bio: "Custom Description"
+      bio: "Currently playing for Radcliffe FC's youth team and recently featured in a successful FA Youth Cup campaign. Brings experience of competing at the highest level of youth football."
     }
   ];
 
