@@ -71,10 +71,16 @@ const Coaches = () => {
   useEffect(() => {
     if (drawerRef.current) {
       if (showAllCoaches) {
+        // Enable interaction and visibility for measurement
+        gsap.set(drawerRef.current, { 
+          visibility: "visible",
+          pointerEvents: "auto"
+        });
+        
         // First, set height to auto to measure the actual height
         gsap.set(drawerRef.current, { height: "auto" });
         const height = drawerRef.current.scrollHeight;
-        gsap.set(drawerRef.current, { height: 0 });
+        gsap.set(drawerRef.current, { height: 0, opacity: 0 });
         
         // Animate to the measured height
         gsap.to(drawerRef.current, {
@@ -111,6 +117,8 @@ const Coaches = () => {
           });
         }, 200);
       } else {
+        // Measure current height before closing
+        gsap.set(drawerRef.current, { height: "auto" });
         const height = drawerRef.current.scrollHeight;
         gsap.set(drawerRef.current, { height: height });
         
@@ -119,6 +127,13 @@ const Coaches = () => {
           opacity: 0,
           duration: 0.4,
           ease: "power2.in",
+          onComplete: () => {
+            // Hide completely to prevent layout interference
+            gsap.set(drawerRef.current, { 
+              visibility: "hidden",
+              pointerEvents: "none"
+            });
+          }
         });
       }
     }
@@ -197,9 +212,9 @@ const Coaches = () => {
   ];
 
   return (
-    <section id="coaches" className="py-24 bg-muted/30 relative overflow-hidden">
+    <section id="coaches" className="py-24 bg-muted/30 relative">
       {/* Background pattern */}
-      <div className="absolute inset-0 opacity-10 grass-texture" />
+      <div className="absolute inset-0 opacity-10 grass-texture overflow-hidden" />
       
       <div className="container mx-auto px-4 relative z-10">
         <div ref={headerRef} className="text-center mb-16">
@@ -257,8 +272,13 @@ const Coaches = () => {
         {/* Drawer for Additional Coaches */}
         <div
           ref={drawerRef}
-          className="overflow-hidden"
-          style={{ height: 0, opacity: 0 }}
+          className="overflow-hidden will-change-[height,opacity]"
+          style={{ 
+            height: 0, 
+            opacity: 0,
+            visibility: "hidden",
+            pointerEvents: "none"
+          }}
         >
           <div className="mt-12 pt-8 border-t border-border/50">
             <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-8 text-center">
