@@ -153,19 +153,19 @@ const Coaches = () => {
       name: "Bailey",
       image: "/Bailey Coach.jpg",
       role: "Skills Coach/Founder",
-      bio: "Got his pro contract with Accrington Stanley while still playing for Clitheroe FC. Shows it's possible to go from grassroots to professional level."
+      bio: "Earnt a pro contract at Accrington Stanley whilst playing for Clitheroe FC"
     },
     {
       name: "Ryan",
       image: "/Ryan Coach.jpg",
       role: "Performance Coach/Founder",
-      bio: "Started at Oldham Athletic's academy and has played for Ramsbottom United and Longridge Town. Knows both the academy side and what it takes to play senior football."
+      bio: "Signed clubs- Ramsbottom United, Longride Town, youth career with Oldham Athletic academy"
     },
     {
       name: "Scott",
       image: "/Scott Coach.jpg",
       role: "Head Coach/Founder",
-      bio: "Came through Altrincham FC's academy and has played semi-pro at Newcastle Town, Bacup Borough, and Daisy Hill. Focuses on helping players improve their technique and understanding of the game."
+      bio: "Signed clubs- Newcastle Town, Bacup Borough and Daisy Hill youth career with Altringham FC"
     }
   ];
 
@@ -174,49 +174,49 @@ const Coaches = () => {
       name: "Josh",
       image: "/Coach1.jpg",
       role: "Head Coach",
-      bio: "Currently captaining Elton Vale with extensive academy experience throughout his youth career. Brings strong leadership qualities and a deep understanding of player development."
+      bio: "Currently captaining Elton Vale, plenty of academy experience in his youth career"
     },
     {
       name: "Lewis",
       image: "/Coach2.jpg",
       role: "Coach",
-      bio: "Currently playing for Radcliffe FC's youth team while regularly training with the first team. Offers unique insights into the transition from youth to senior football."
+      bio: "Currently playing at Radcliffe FC youth team being involved with the first team's training"
     },
     {
       name: "Harry",
       image: "/Coach3.jpg",
       role: "Coach",
-      bio: "Plays for Bury FC's youth team and came through the academy system. Knows what it takes to make it at the youth level."
+      bio: "Currently playing at Bury FC's youth team with academy experience in his youth career"
     },
     {
       name: "Dylan",
       image: "/Coach4.jpg",
       role: "Coach",
-      bio: "Currently playing for Radcliffe FC's first team with an impressive scoring record, netting 2 goals in his 2 most recent appearances. Demonstrates the results of dedicated training and development."
+      bio: "Currently playing at Radcliffe FC's first team scoring 2/2 in his recent appearance's"
     },
     {
       name: "Kyle",
       image: "/Coach5.jpg",
       role: "Coach",
-      bio: "Currently playing for Elton Vale with semi-professional experience at Prestwich Heys and Daisy Hill. Combines current playing experience with proven semi-pro credentials."
+      bio: "Currently playing at Elton Vale, with Semi-Pro team experience such as Prestwich Heys and Daisy Hill"
     },
     {
       name: "Callum",
       image: "/Coach6.jpg",
       role: "Coach",
-      bio: "Playing professionally at Fleetwood FC after coming through Everton's academy. Knows what it's like to train and play at the highest levels."
+      bio: "Currently playing at Fleetwood FC professionally with his youth career being with Everton FC"
     },
     {
       name: "Clarke",
       image: "/Coach7.jpg",
       role: "Coach",
-      bio: "Currently playing for Tottington United on dual registration with Radcliffe FC. Academy graduate of Accrington Stanley, offering professional academy training methods."
+      bio: "Currently playing at Tottington United on dual reg with Radcliffe FC with his youth career being academy football at Accrington Stanley"
     },
     {
       name: "Max",
       image: "/Coach8.jpg",
       role: "Coach",
-      bio: "Currently playing for Radcliffe FC's youth team and recently featured in a successful FA Youth Cup campaign. Brings experience of competing at the highest level of youth football."
+      bio: "Currently playing at Radcliffe FC's youth team and recently involved in a successful FA youth cup run with them"
     }
   ];
 
