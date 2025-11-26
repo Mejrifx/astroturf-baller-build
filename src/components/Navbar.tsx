@@ -131,13 +131,6 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Location Indicator - Mobile (Centered) */}
-          <div className="md:hidden absolute left-1/2 transform -translate-x-1/2 flex items-center">
-            <p className="text-black/80 text-xs font-medium whitespace-nowrap">
-              📍 Bury
-            </p>
-          </div>
-
           {/* Desktop Navigation - Center */}
           <div className="hidden md:flex items-center space-x-1 absolute left-1/2 transform -translate-x-1/2">
             {navItems.map((item) => (

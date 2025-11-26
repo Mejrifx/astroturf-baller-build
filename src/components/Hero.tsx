@@ -8,6 +8,7 @@ const Hero = () => {
   const textRef = useRef<HTMLDivElement>(null);
   const buttonsRef = useRef<HTMLDivElement>(null);
   const locationDesktopRef = useRef<HTMLDivElement>(null);
+  const locationMobileRef = useRef<HTMLDivElement>(null);
 
   const scrollToContact = () => {
     document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" });
@@ -19,6 +20,7 @@ const Hero = () => {
     const text = textRef.current;
     const buttons = buttonsRef.current;
     const locationDesktop = locationDesktopRef.current;
+    const locationMobile = locationMobileRef.current;
 
     if (!logo || !text || !buttons) return;
 
@@ -27,7 +29,9 @@ const Hero = () => {
 
     if (isMobile) {
       // Mobile animations: fade in from bottom with slight stagger
-      gsap.set([logo, text, buttons], { opacity: 0, y: 30 });
+      const elements = [logo, text, buttons];
+      if (locationMobile) elements.push(locationMobile);
+      gsap.set(elements, { opacity: 0, y: 30 });
 
       tl.to(logo, {
         opacity: 1,
@@ -55,6 +59,19 @@ const Hero = () => {
           },
           "-=1.05"
         );
+      
+      if (locationMobile) {
+        tl.to(
+          locationMobile,
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1.5,
+            ease: "power2.out",
+          },
+          "-=1.05"
+        );
+      }
     } else {
       // Desktop animations: logo from left, text from right (meeting in the middle)
       gsap.set(logo, { opacity: 0, x: -100 });
@@ -149,13 +166,24 @@ const Hero = () => {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               
-              <Button 
-                size="lg"
-                onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
-                className="border-2 border-white bg-transparent text-white hover:bg-white/20 font-bold text-lg px-8 py-6 rounded-full backdrop-blur-sm transition-all hover:scale-105 shadow-lg"
-              >
-                Learn More
-              </Button>
+              <div className="flex flex-col items-center gap-4">
+                <Button 
+                  size="lg"
+                  onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
+                  className="border-2 border-white bg-transparent text-white hover:bg-white/20 font-bold text-lg px-8 py-6 rounded-full backdrop-blur-sm transition-all hover:scale-105 shadow-lg"
+                >
+                  Learn More
+                </Button>
+                
+                {/* Location Badge - Mobile (Underneath Learn More button) */}
+                <div ref={locationMobileRef} className="md:hidden flex justify-center">
+                  <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-2 shadow-lg">
+                    <p className="text-white text-sm font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] whitespace-nowrap">
+                      📍 Based In Bury
+                    </p>
+                  </div>
+                </div>
+              </div>
               
               {/* Location Badge - Desktop (Next to Learn More button) */}
               <div ref={locationDesktopRef} className="hidden md:inline-flex items-center">
