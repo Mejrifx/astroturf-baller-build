@@ -115,20 +115,29 @@ const Navbar = () => {
             </button>
           </div>
 
-          {/* Social Icons - Left (Mobile only) */}
-          <div className="md:hidden flex items-center gap-2">
+          {/* Social Icons and Location - Left (Mobile only) */}
+          <div className="md:hidden flex items-center gap-1.5 min-w-0">
             {socialLinks.map((social, index) => (
               <a
                 key={index}
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 text-foreground hover:text-primary transition-all duration-300 hover:scale-110"
+                className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 text-foreground hover:text-primary transition-all duration-300 hover:scale-110 flex-shrink-0"
                 aria-label={social.label}
               >
                 <social.icon className="w-5 h-5" />
               </a>
             ))}
+            
+            {/* Location Indicator - Mobile */}
+            <div className="flex items-center flex-shrink-0">
+              <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-2.5 py-1 shadow-lg">
+                <p className="text-white text-xs font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] whitespace-nowrap">
+                  📍 Bury
+                </p>
+              </div>
+            </div>
           </div>
 
           {/* Desktop Navigation - Center */}
