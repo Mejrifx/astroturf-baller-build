@@ -130,16 +130,8 @@ const Hero = () => {
           {/* Right Side - Text and Buttons */}
           <div ref={textRef} className="flex flex-col justify-center items-center md:items-start space-y-6 md:space-y-8 mt-8 md:mt-0">
             <div className="space-y-4 md:space-y-6 text-center md:text-left">
-              <h1 className="text-3xl md:text-6xl lg:text-7xl font-bold text-white leading-tight drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)] md:drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)] flex items-center justify-center md:justify-start gap-3 md:gap-4">
-                <span>Transform Your Game</span>
-                {/* Location Badge - Desktop (Inline to the right of "Game") */}
-                <div ref={locationDesktopRef} className="hidden md:inline-flex items-center">
-                  <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-3 py-1.5 lg:px-4 lg:py-2 shadow-lg">
-                    <p className="text-white text-xs md:text-sm lg:text-base font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] whitespace-nowrap">
-                      📍 Based In Bury
-                    </p>
-                  </div>
-                </div>
+              <h1 className="text-3xl md:text-6xl lg:text-7xl font-bold text-white leading-tight drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)] md:drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)]">
+                Transform Your Game
               </h1>
               
               <p className="text-base md:text-xl lg:text-2xl text-white font-medium leading-relaxed max-w-2xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] md:drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
@@ -147,7 +139,7 @@ const Hero = () => {
               </p>
             </div>
             
-            <div ref={buttonsRef} className="flex flex-col sm:flex-row gap-4 pt-2">
+            <div ref={buttonsRef} className="flex flex-col sm:flex-row gap-4 pt-2 items-center">
               <Button 
                 size="lg"
                 onClick={scrollToContact}
@@ -164,6 +156,15 @@ const Hero = () => {
               >
                 Learn More
               </Button>
+              
+              {/* Location Badge - Desktop (Next to Learn More button) */}
+              <div ref={locationDesktopRef} className="hidden md:inline-flex items-center">
+                <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-3 py-1.5 lg:px-4 lg:py-2 shadow-lg">
+                  <p className="text-white text-xs md:text-sm lg:text-base font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] whitespace-nowrap">
+                    📍 Based In Bury
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

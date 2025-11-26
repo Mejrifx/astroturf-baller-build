@@ -115,8 +115,8 @@ const Navbar = () => {
             </button>
           </div>
 
-          {/* Social Icons and Location - Left (Mobile only) */}
-          <div className="md:hidden flex items-center gap-1.5 min-w-0">
+          {/* Social Icons - Left (Mobile only) */}
+          <div className="md:hidden flex items-center gap-1.5 flex-shrink-0">
             {socialLinks.map((social, index) => (
               <a
                 key={index}
@@ -129,13 +129,13 @@ const Navbar = () => {
                 <social.icon className="w-5 h-5" />
               </a>
             ))}
-            
-            {/* Location Indicator - Mobile */}
-            <div className="flex items-center flex-shrink-0">
-              <p className="text-black/80 text-xs font-medium whitespace-nowrap px-2">
-                📍 Based In Bury
-              </p>
-            </div>
+          </div>
+
+          {/* Location Indicator - Mobile (Centered) */}
+          <div className="md:hidden absolute left-1/2 transform -translate-x-1/2 flex items-center">
+            <p className="text-black/80 text-xs font-medium whitespace-nowrap">
+              📍 Bury
+            </p>
           </div>
 
           {/* Desktop Navigation - Center */}
