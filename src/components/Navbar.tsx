@@ -132,11 +132,9 @@ const Navbar = () => {
             
             {/* Location Indicator - Mobile */}
             <div className="flex items-center flex-shrink-0">
-              <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-2.5 py-1 shadow-lg">
-                <p className="text-white text-xs font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] whitespace-nowrap">
-                  📍 Bury
-                </p>
-              </div>
+              <p className="text-black/80 text-xs font-medium whitespace-nowrap px-2">
+                📍 Based In Bury
+              </p>
             </div>
           </div>
 

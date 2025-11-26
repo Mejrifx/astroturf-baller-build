@@ -130,13 +130,13 @@ const Hero = () => {
           {/* Right Side - Text and Buttons */}
           <div ref={textRef} className="flex flex-col justify-center items-center md:items-start space-y-6 md:space-y-8 mt-8 md:mt-0">
             <div className="space-y-4 md:space-y-6 text-center md:text-left">
-              <h1 className="text-3xl md:text-6xl lg:text-7xl font-bold text-white leading-tight drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)] md:drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)] flex flex-wrap items-center justify-center md:justify-start gap-3 md:gap-4">
+              <h1 className="text-3xl md:text-6xl lg:text-7xl font-bold text-white leading-tight drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)] md:drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)] flex items-center justify-center md:justify-start gap-3 md:gap-4">
                 <span>Transform Your Game</span>
-                {/* Location Badge - Desktop (Inline with "Game") */}
-                <div ref={locationDesktopRef} className="hidden md:inline-flex items-center self-center">
+                {/* Location Badge - Desktop (Inline to the right of "Game") */}
+                <div ref={locationDesktopRef} className="hidden md:inline-flex items-center">
                   <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-3 py-1.5 lg:px-4 lg:py-2 shadow-lg">
                     <p className="text-white text-xs md:text-sm lg:text-base font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] whitespace-nowrap">
-                      📍 Bury, Greater Manchester
+                      📍 Based In Bury
                     </p>
                   </div>
                 </div>
