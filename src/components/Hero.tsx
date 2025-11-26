@@ -7,6 +7,8 @@ const Hero = () => {
   const logoRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const buttonsRef = useRef<HTMLDivElement>(null);
+  const locationDesktopRef = useRef<HTMLDivElement>(null);
+  const locationMobileRef = useRef<HTMLDivElement>(null);
 
   const scrollToContact = () => {
     document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" });
@@ -17,6 +19,8 @@ const Hero = () => {
     const logo = logoRef.current;
     const text = textRef.current;
     const buttons = buttonsRef.current;
+    const locationDesktop = locationDesktopRef.current;
+    const locationMobile = locationMobileRef.current;
 
     if (!logo || !text || !buttons) return;
 
@@ -25,7 +29,9 @@ const Hero = () => {
 
     if (isMobile) {
       // Mobile animations: fade in from bottom with slight stagger
-      gsap.set([logo, text, buttons], { opacity: 0, y: 30 });
+      const elements = [logo, text, buttons];
+      if (locationMobile) elements.push(locationMobile);
+      gsap.set(elements, { opacity: 0, y: 30 });
 
       tl.to(logo, {
         opacity: 1,
@@ -53,11 +59,27 @@ const Hero = () => {
           },
           "-=1.05"
         );
+      
+      if (locationMobile) {
+        tl.to(
+          locationMobile,
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1.5,
+            ease: "power2.out",
+          },
+          "-=1.05"
+        );
+      }
     } else {
       // Desktop animations: logo from left, text from right (meeting in the middle)
       gsap.set(logo, { opacity: 0, x: -100 });
       gsap.set(text, { opacity: 0, x: 100 });
       gsap.set(buttons, { opacity: 0, y: 20 });
+      if (locationDesktop) {
+        gsap.set(locationDesktop, { opacity: 0, y: -20 });
+      }
 
       tl.to(logo, {
         opacity: 1,
@@ -85,6 +107,19 @@ const Hero = () => {
           },
           "-=0.9"
         );
+      
+      if (locationDesktop) {
+        tl.to(
+          locationDesktop,
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1.2,
+            ease: "power2.out",
+          },
+          "-=0.9"
+        );
+      }
     }
   }, []);
 
@@ -97,6 +132,15 @@ const Hero = () => {
       <div className="absolute inset-0 bg-gradient-to-t from-lime/10 via-transparent to-transparent md:block hidden" />
       <div className="absolute inset-0 bg-gradient-to-t from-lime/5 via-transparent via-20% to-transparent md:hidden" />
       
+      {/* Location Badge - Desktop (Top Right) */}
+      <div ref={locationDesktopRef} className="hidden md:block absolute top-24 right-8 z-20">
+        <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-6 py-3 shadow-lg">
+          <p className="text-white text-sm md:text-base font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+            📍 Bury, Greater Manchester
+          </p>
+        </div>
+      </div>
+
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 pt-24 md:pt-16 pb-20 min-h-screen flex items-start md:items-center">
         <div className="w-full grid md:grid-cols-2 gap-6 md:gap-12 lg:gap-16 items-center">
@@ -119,6 +163,15 @@ const Hero = () => {
               <p className="text-base md:text-xl lg:text-2xl text-white font-medium leading-relaxed max-w-2xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] md:drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
                 Professional football coaching by pro/semi-pro players who are passionate about developing the next generation of ballers
               </p>
+            </div>
+            
+            {/* Location Badge - Mobile (Below Description) */}
+            <div ref={locationMobileRef} className="md:hidden flex justify-center pt-2">
+              <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-5 py-2.5 shadow-lg">
+                <p className="text-white text-sm font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+                  📍 Bury, Greater Manchester
+                </p>
+              </div>
             </div>
             
             <div ref={buttonsRef} className="flex flex-col sm:flex-row gap-4 pt-2">
